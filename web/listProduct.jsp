@@ -9,6 +9,7 @@
         <title>Show All Products</title>
     </head>
     <body>
+        <%-- MEGAN WAS HERE --%>
         <table border=1>
             <thead>
                 <tr>
