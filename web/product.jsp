@@ -19,7 +19,7 @@
             });
         </script>
 
-        <form method="POST" action='UserController' name="frmAddProduct">
+        <form method="POST" action='ProductController' name="frmAddProduct">
             Order Number : <input type="text" readonly="readonly" name="order_num"
                              value="<c:out value="${product.order_num}" />" /> <br /> 
             Customer ID: <input
