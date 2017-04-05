@@ -4,6 +4,7 @@
     Author     : memos
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,9 +15,43 @@
     <body>
         <h1>Hello World!</h1>
         
-        <%-- help me --%>
         
-        <a href="product.jsp">Product</a>
+        
+        <%-- User Login --%>
+        
+        <form method="POST" action='ProductController' name="frmUserLogin">
+            Email : <input type="text" name="email"
+                             value="<c:out value="${user.email}" />" /> <br /> 
+            
+            Password: <input
+                type="text" name="password"
+                value= "<c:out value="${user.password}" />" /> <br /> 
+            <input type="submit" value="Submit" />
+        </form>
+          
+            
+            
+         <%-- User Register --%>    
+        <form method="GET" action='ProductController' name="frmUserRegister">
+            User ID: <input type="text" readonly="readonly" name="order_num"
+                             value="<c:out value="${user.user_id}" />" /> <br /> 
+            
+            First Name : <input type="text" name="firstName"
+                             value="<c:out value="${user.firstName}" />" /> <br /> 
+            
+            Last Name: <input type="text" name="password"
+                             value= "<c:out value="${user.lastName}" />" /> <br /> 
+            
+            Email : <input type="text" name="email"
+                             value="<c:out value="${user.email}" />" /> <br /> 
+            
+            Password: <input
+                type="text" name="password"
+                value= "<c:out value="${user.password}" />" /> <br /> 
+            
+            
+            <input type="submit" value="Submit" />
+        </form>    
         
         
         
