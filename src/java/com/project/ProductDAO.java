@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductDAO {
 
@@ -16,6 +18,36 @@ public class ProductDAO {
         connection = DbConnectionUtil.getConnection();
     }
 
+   
+    public User getUser(String email)
+    {
+        User user = new User();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.
+                    prepareStatement("select * from users where email=?");
+            preparedStatement.setString(1, email);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            user.setUser_id(rs.getInt("userid"));
+            user.setFirstName(rs.getString("firstname"));
+            user.setLastName(rs.getString("lastname"));
+            user.setEmail(rs.getString("email"));
+            user.setIsManager(rs.getBoolean("ismanager"));
+            user.setPassword(rs.getString("password"));
+            
+            
+        } catch (SQLException ex) {
+            
+        }
+        
+        return user;
+    }
+    
+    
+    
+    
+    
     public void addProduct(Product product) {
         try {
             PreparedStatement preparedStmt = connection

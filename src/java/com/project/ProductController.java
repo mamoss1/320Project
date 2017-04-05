@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/product.jsp";
-    private static String LIST_PRODUCT = "/listProduct.jsp";
+    private static String CUSTOMER = "/customerHome.jsp";
+    private static String MANAGER = "/managerHome.jsp";
     private ProductDAO dao;
 
     public ProductController() {
@@ -29,23 +29,63 @@ public class ProductController extends HttpServlet {
         String forward="";
      
         String action = request.getParameter("action");
+        
+        
+        try
+          {
+              //Find the email in the database (if it doesn't exist it will go to catch)
+              //Get the password linked to email and check if it equals password entered (if not display invalid login)
+              //If it matches, check whether they are employee or member. This will decide which forward to use
+              
+              User user = new User();
+              user = dao.getUser(request.getParameter("email"));
+              String password = user.getPassword();
+              boolean isManager = user.getIsManager();
+              String enteredPassword = request.getParameter("password");
+              if(enteredPassword.equals(password))
+              {
+                  if(isManager == true)
+                  {
+                      forward = MANAGER;
+                      
+                  }
+                  else
+                  {
+                      forward = CUSTOMER;
+                  }
+              }
+              else
+              {
+                  //invalid login
+              }
+              
+              
+          }
+          catch (Exception e)
+          {
+              //Display "Ivalid login, please try again"
+          } 
+        
+        
+        
+        //OLD CODE
 
-        if (action.equalsIgnoreCase("delete")){
-            int order_num = Integer.parseInt(request.getParameter("order_num"));
-            dao.deleteProduct(order_num);
-            forward = LIST_PRODUCT;
-            request.setAttribute("products", dao.getAllProducts());    
-        } else if (action.equalsIgnoreCase("edit")){
-            forward = INSERT_OR_EDIT;
-            int order_num = Integer.parseInt(request.getParameter("order_num"));
-            Product product = dao.getProductById(order_num);
-            request.setAttribute("product", product);
-        } else if (action.equalsIgnoreCase("listProduct")){
-            forward = LIST_PRODUCT;
-            request.setAttribute("products", dao.getAllProducts());
-        } else {
-            forward = INSERT_OR_EDIT;
-        }
+//        if (action.equalsIgnoreCase("delete")){
+//            int order_num = Integer.parseInt(request.getParameter("order_num"));
+//            dao.deleteProduct(order_num);
+//            forward = LIST_PRODUCT;
+//            request.setAttribute("products", dao.getAllProducts());    
+//        } else if (action.equalsIgnoreCase("edit")){
+//            forward = INSERT_OR_EDIT;
+//            int order_num = Integer.parseInt(request.getParameter("order_num"));
+//            Product product = dao.getProductById(order_num);
+//            request.setAttribute("product", product);
+//        } else if (action.equalsIgnoreCase("listProduct")){
+//            forward = LIST_PRODUCT;
+//            request.setAttribute("products", dao.getAllProducts());
+//        } else {
+//            forward = INSERT_OR_EDIT;
+//        }
 
         //fowards it to the specific page
         RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -91,7 +131,7 @@ public class ProductController extends HttpServlet {
             product.setOrder_num(Integer.parseInt(order_num));
             dao.updateProduct(product);
         }
-        RequestDispatcher view = request.getRequestDispatcher(LIST_PRODUCT);
+        RequestDispatcher view = request.getRequestDispatcher(MANAGER);
         request.setAttribute("products", dao.getAllProducts());
         view.forward(request, response);
     }
