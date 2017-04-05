@@ -13,7 +13,7 @@
         <title>Home Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>User Login</h1>
         
         
         
@@ -30,7 +30,7 @@
         </form>
           
             
-            
+        <h1>User Register</h1>    
          <%-- User Register --%>    
         <form method="GET" action='ProductController' name="frmUserRegister">
             User ID: <input type="text" readonly="readonly" name="order_num"
@@ -49,6 +49,8 @@
                 type="text" name="password"
                 value= "<c:out value="${user.password}" />" /> <br /> 
             
+            Manager: <input type="radio" name="isManager" value="True" /> <br /> 
+            Customer: <input type="radio" name="isManager" value="False" /> <br /> 
             
             <input type="submit" value="Submit" />
         </form>    
