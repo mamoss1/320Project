@@ -19,7 +19,7 @@
         
         <%-- User Login --%>
         
-        <form method="POST" action='ProductController' name="frmUserLogin">
+        <form method="GET" action='ProductController' name="frmUserLogin">
             Email : <input type="text" name="email"
                              value="<c:out value="${user.email}" />" /> <br /> 
             
@@ -32,7 +32,7 @@
             
         <h1>User Register</h1>    
          <%-- User Register --%>    
-        <form method="GET" action='ProductController' name="frmUserRegister">
+        <form method="POST" action='ProductController' name="frmUserRegister">
             User ID: <input type="text" readonly="readonly" name="order_num"
                              value="<c:out value="${user.user_id}" />" /> <br /> 
             
