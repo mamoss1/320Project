@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 //https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.1/api/javax.servlet.http.HttpServlet.html
 
-public class ProductController extends HttpServlet {
+public class CustomerController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String CUSTOMER = "/customerHome.jsp";
     private static String MANAGER = "/managerHome.jsp";
     private ProductDAO dao;
 
-    public ProductController() {
+    public CustomerController() {
         super();
         dao = new ProductDAO();
     }
@@ -94,44 +94,45 @@ public class ProductController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = new User();
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        boolean isManager = Boolean.parseBoolean(request.getParameter("isManager"));
+        Product product = new Product();
+        String customer_id = request.getParameter("customer_id");
+        String product_id = request.getParameter("product_id");
+        String quality = request.getParameter("quality");
+        String shipping_cost = request.getParameter("shipping_cost");
         
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setIsManager(isManager);
+        product.setCustomer_id(Integer.parseInt(customer_id));
+        product.setProduct_id(Integer.parseInt(product_id));
+        product.setQuality(Integer.parseInt(quality));
+        product.setShipping_cost(Integer.parseInt(shipping_cost));
         
-        dao.addUser(user);
-         
-//        String order_num = request.getParameter("order_num");
-//        if(order_num == null || order_num.isEmpty())
-//        {
-//            dao.addProduct(product);
-//        }
-//        else
-//        {
-//            product.setOrder_num(Integer.parseInt(order_num));
-//            dao.updateProduct(product);
-//        }
-        
-        if(isManager = true)
-        {
-            RequestDispatcher view = request.getRequestDispatcher(MANAGER);
-            request.setAttribute("user", user);
-            view.forward(request, response);
+        try {
+            Date sales_date = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("sales_date"));
+            product.setSales_date(sales_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-
+        
+        try {
+            Date shipping_date = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("shipping_date"));
+            product.setShipping_date(shipping_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
+        
+        
+        String order_num = request.getParameter("order_num");
+        if(order_num == null || order_num.isEmpty())
+        {
+            dao.addProduct(product);
+        }
         else
         {
-            RequestDispatcher view = request.getRequestDispatcher(CUSTOMER);
-            request.setAttribute("user", user);
-            view.forward(request, response);
+            product.setOrder_num(Integer.parseInt(order_num));
+            dao.updateProduct(product);
         }
+        RequestDispatcher view = request.getRequestDispatcher(MANAGER);
+        request.setAttribute("products", dao.getAllProducts());
+        view.forward(request, response);
     }
 }

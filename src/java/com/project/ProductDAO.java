@@ -48,10 +48,10 @@ public class ProductDAO {
     
     
     
-    public void addProduct(Product product) {
+    public void addUser(User user) {
         try {
             PreparedStatement preparedStmt = connection
-                    .prepareStatement("INSERT INTO PRODUCT(order_num, customer_id, product_id, quality, shipping_cost, sales_date, shipping_date) values (?, ?, ?, ?, ?, ?, ?)");
+                    .prepareStatement("INSERT INTO USERS(firstname, lastname, email, is manager, password) values (?, ?, ?, ?, ?)");
 
             
             preparedStmt.setInt(1, product.getOrder_num());

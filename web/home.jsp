@@ -33,13 +33,13 @@
         <h1>User Register</h1>    
          <%-- User Register --%>    
         <form method="POST" action='ProductController' name="frmUserRegister">
-            User ID: <input type="text" readonly="readonly" name="order_num"
+            User ID: <input type="text" readonly="readonly" name="user_id"
                              value="<c:out value="${user.user_id}" />" /> <br /> 
             
             First Name : <input type="text" name="firstName"
                              value="<c:out value="${user.firstName}" />" /> <br /> 
             
-            Last Name: <input type="text" name="password"
+            Last Name: <input type="text" name="lastName"
                              value= "<c:out value="${user.lastName}" />" /> <br /> 
             
             Email : <input type="text" name="email"
