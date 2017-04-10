@@ -85,7 +85,7 @@
             <%
            Class.forName("com.mysql.jdbc.Driver");
             Connection connection= null;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "mwaskin","mwaskin");
              Statement stmt= null;
             stmt=connection.createStatement();
                 

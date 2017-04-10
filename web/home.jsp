@@ -38,7 +38,7 @@
             First Name : <input type="text" name="firstName"
                              value="<c:out value="${user.firstName}" />" /> <br /> 
             
-            Last Name: <input type="text" name="password"
+            Last Name: <input type="text" name="lastName"
                              value= "<c:out value="${user.lastName}" />" /> <br /> 
             
             Email : <input type="text" name="email"

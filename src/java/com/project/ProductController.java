@@ -94,45 +94,44 @@ public class ProductController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Product product = new Product();
-        String customer_id = request.getParameter("customer_id");
-        String product_id = request.getParameter("product_id");
-        String quality = request.getParameter("quality");
-        String shipping_cost = request.getParameter("shipping_cost");
+        User user = new User();
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        boolean isManager = Boolean.parseBoolean(request.getParameter("isManager"));
         
-        product.setCustomer_id(Integer.parseInt(customer_id));
-        product.setProduct_id(Integer.parseInt(product_id));
-        product.setQuality(Integer.parseInt(quality));
-        product.setShipping_cost(Integer.parseInt(shipping_cost));
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setIsManager(isManager);
         
-        try {
-            Date sales_date = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("sales_date"));
-            product.setSales_date(sales_date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        dao.addUser(user);
+         
+//        String order_num = request.getParameter("order_num");
+//        if(order_num == null || order_num.isEmpty())
+//        {
+//            dao.addProduct(product);
+//        }
+//        else
+//        {
+//            product.setOrder_num(Integer.parseInt(order_num));
+//            dao.updateProduct(product);
+//        }
         
-        try {
-            Date shipping_date = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("shipping_date"));
-            product.setShipping_date(shipping_date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        
-        
-        
-        String order_num = request.getParameter("order_num");
-        if(order_num == null || order_num.isEmpty())
+        if(isManager = true)
         {
-            dao.addProduct(product);
+            RequestDispatcher view = request.getRequestDispatcher(MANAGER);
+            request.setAttribute("user", user);
+            view.forward(request, response);
         }
+
         else
         {
-            product.setOrder_num(Integer.parseInt(order_num));
-            dao.updateProduct(product);
+            RequestDispatcher view = request.getRequestDispatcher(CUSTOMER);
+            request.setAttribute("user", user);
+            view.forward(request, response);
         }
-        RequestDispatcher view = request.getRequestDispatcher(MANAGER);
-        request.setAttribute("products", dao.getAllProducts());
-        view.forward(request, response);
     }
 }
