@@ -127,7 +127,7 @@
              
             <td><c:out value="<%= rs.getString(1) %>"/></td>
                     <td><a href="=<c:out value="<%=rs.getString(1)%>"/>">CheckOut</a></td>
-                    <td><a href="=<c:out value="<%=rs.getString(1)%>"/>">Whish List</a></td>
+                    <td><a href="=<c:out value="<%=rs.getString(1)%>"/>">Wish List</a></td>
          
 
                </tr>
