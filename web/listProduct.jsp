@@ -10,6 +10,7 @@
 <html>
     
     <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <title>Show All Products</title>
     </head>
@@ -85,7 +86,7 @@
             <%
            Class.forName("com.mysql.jdbc.Driver");
             Connection connection= null;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "mwaskin","mwaskin");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
              Statement stmt= null;
             stmt=connection.createStatement();
                 

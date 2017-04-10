@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 4, 2017, 10:25:25 PM
+    Author     : memos
+*/
+
+body {
+    background-color: darkgray;
+    font-family: Arial;
+
+}
+
+h1 {
+    letter-spacing: 3px;
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+}
+
+h2 {
+    letter-spacing: 6px;
+    font-size: 1.4em;
+    color: white;
+    font-weight: normal;
+    width: 450px;
+}
+
+table {
+    width: 550px;
+    padding: 10px;
+    background-color: lightgray;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    color: black;
+}
+
+

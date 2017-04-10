@@ -3,12 +3,13 @@
     Created on : Apr 4, 2017, 3:53:25 PM
     Author     : memos
 --%>
-<link REL="StyleSheet" TYPE="text/css" HREF="style.css">
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
     </head>
