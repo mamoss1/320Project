@@ -12,12 +12,25 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <select name="User Type">
-            <option value="1">Search Movies</option>
-            <option value="2">View Wish List</option>
-            <option value="3">View Cart</option>
-            <option value="4">Checkout</option>
-        </select>
+        <h1>Hello World!
+        <%-- </h1><form name="customerPage" action="CustomerController">
+            <select name="User Type">
+                <option value="1">Search Movies</option>
+                <option value="2">View Wish List</option>
+                <option value="3">View Cart</option>
+                <option value="4">Checkout</option>
+            </select>
+            <input type="submit" value="Submit" name="submit" />
+        </form> --%>
+        
+        <form method="GET" action='CustomerController' name="frmUserLogin">
+            <select name="User Type">
+                <option value="1">Search Movies</option>
+                <option value="2">View Wish List</option>
+                <option value="3">View Cart</option>
+                <option value="4">Checkout</option>
+            </select> 
+            <input type="submit" value="Submit" />
+        </form>
     </body>
 </html>
