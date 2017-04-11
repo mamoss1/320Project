@@ -34,20 +34,20 @@ public class CustomerController extends HttpServlet {
 
         try {
 
-            if (action.equalsIgnoreCase("1")) {
-                forward = LIST_PRODUCT;
-                request.setAttribute("products", dao.getAllProducts());
-            } else if (action.equalsIgnoreCase("edit")) {
-                forward = INSERT_OR_EDIT;
-                int order_num = Integer.parseInt(request.getParameter("order_num"));
-                Product product = dao.getProductById(order_num);
-                request.setAttribute("product", product);
-            } else if (action.equalsIgnoreCase("listProduct")) {
-                forward = LIST_PRODUCT;
-                request.setAttribute("products", dao.getAllProducts());
-            } else {
-                forward = INSERT_OR_EDIT;
-            }
+//            if (action.equalsIgnoreCase("1")) {
+//                forward = LIST_PRODUCT;
+//                request.setAttribute("products", dao.getAllProducts());
+//            } else if (action.equalsIgnoreCase("edit")) {
+//                forward = INSERT_OR_EDIT;
+//                int order_num = Integer.parseInt(request.getParameter("order_num"));
+//                Product product = dao.getProductById(order_num);
+//                request.setAttribute("product", product);
+//            } else if (action.equalsIgnoreCase("listProduct")) {
+//                forward = LIST_PRODUCT;
+//                request.setAttribute("products", dao.getAllProducts());
+//            } else {
+//                forward = INSERT_OR_EDIT;
+//            }
 
         } catch (Exception e) {
             //Display "Ivalid login, please try again"

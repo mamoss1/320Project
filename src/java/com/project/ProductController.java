@@ -120,7 +120,7 @@ public class ProductController extends HttpServlet {
 //            dao.updateProduct(product);
 //        }
         
-        if(isManager = true)
+        if(isManager == true)
         {
             RequestDispatcher view = request.getRequestDispatcher(MANAGER);
             request.setAttribute("user", user);
