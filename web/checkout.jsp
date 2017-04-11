@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Checkout" /></td>
+                    <td><a href="customerTransactions.jsp">Checkout</td>
                 </tr>    
             </tbody>
         </table>
