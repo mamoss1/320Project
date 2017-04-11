@@ -14,48 +14,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <title>Show All Products</title>
     </head>
-    <body>
        
-        
-        <%-- MEGAN WAS HERE --%>
-        <%--
-        <table border=1>
-            <thead>
-                <tr>
-                    <th>Order Number</th>
-                    <th>Customer ID</th>
-                    <th>Product ID</th>
-                    <th>Quality</th>
-                    <th>Shipping Cost</th>
-                    <th>Sales Date</th>
-                    <th>Shipping Date</th>
-                    <th colspan=2>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${products}" var="product">
-                    <tr>
-                        <td><c:out value="${product.order_num}" /></td>
-                        <td><c:out value="${product.customer_id}" /></td>
-                        <td><c:out value="${product.product_id}" /></td>
-                        <td><c:out value="${product.quality}" /></td>
-                        <td><c:out value="${product.shipping_cost}" /></td>
-                        <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${product.sales_date}" /></td>
-                        <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${product.shipping_date}" /></td>
-                        <td><a href="UserController?action=edit&order_num=<c:out value="${product.order_num}"/>">Update</a></td>
-                        <td><a href="UserController?action=delete&order_num=<c:out value="${product.order_num}"/>">Delete</a></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        <p><a href="UserController?action=insert">Add Product</a></p>
-
-        
-        
-
-    </body>
-    --%>
-    
+     
+ <%--the code below allow the user to search for a film by the category
+ , actor's name or store. 
+ --%>
 <body>
       <form action="listProduct.jsp" method="POST"> 
      
@@ -122,13 +85,13 @@
              %>
              <tr>
                  <%
-              
+                 String title= rs.getString("title");  
                  
                  %>
              
-            <td><c:out value="<%= rs.getString(1) %>"/></td>
-                    <td><a href="=<c:out value="<%=rs.getString(1)%>"/>">CheckOut</a></td>
-                    <td><a href="=<c:out value="<%=rs.getString(1)%>"/>">Wish List</a></td>
+          <td><a href="DescriptionController?action=d&title=<c:out value="<%=title%>"/>"><%=title%></a></td>
+          <td><a href="CartController?action=d&title=<c:out value="<%=title%>"/>">Cart</a></td>
+            <td><a href="WishListController?action=d&title=<c:out value="<%=title%>"/>">Wish List</a></td>     
          
 
                </tr>
