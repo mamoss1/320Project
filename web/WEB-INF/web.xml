@@ -18,4 +18,34 @@
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/ProductController</url-pattern>
     </servlet-mapping>
+     <servlet>
+        <description/>
+        <display-name>DescriptionController</display-name>
+        <servlet-name>DescriptionController</servlet-name>
+        <servlet-class>com.project.DescriptionController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DescriptionController</servlet-name>
+        <url-pattern>/DescriptionController</url-pattern>
+    </servlet-mapping>
+     <servlet>
+        <description/>
+        <display-name>WishListController</display-name>
+        <servlet-name>WishListController</servlet-name>
+        <servlet-class>com.project.WishListController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WishListController</servlet-name>
+        <url-pattern>/WishListController</url-pattern>
+    </servlet-mapping>
+     <servlet>
+        <description/>
+        <display-name>CartController</display-name>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>com.project.CartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController</url-pattern>
+    </servlet-mapping>
 </web-app>
