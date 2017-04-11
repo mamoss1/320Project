@@ -22,23 +22,22 @@ public class ProductDAO {
     public User getUser(String email)
     {
         User user = new User();
-        PreparedStatement preparedStatement;
+        Statement preparedStatement;
         try {
-            preparedStatement = connection.
-                    prepareStatement("select * from users where email=?");
-            preparedStatement.setString(1, email);
-            
-            ResultSet rs = preparedStatement.executeQuery();
+            preparedStatement = connection.createStatement();
+            ResultSet rs = preparedStatement.executeQuery("select * from users where email = ' " + email + " ' ");
+            while (rs.next()) 
+            {
             user.setUser_id(rs.getInt("userid"));
             user.setFirstName(rs.getString("firstname"));
             user.setLastName(rs.getString("lastname"));
             user.setEmail(rs.getString("email"));
             user.setIsManager(rs.getBoolean("ismanager"));
             user.setPassword(rs.getString("password"));
-            
+            }
             
         } catch (SQLException ex) {
-            
+            ex.printStackTrace();
         }
         
         return user;
