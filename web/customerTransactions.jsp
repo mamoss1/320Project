@@ -24,7 +24,8 @@
                        user="root"  password="nbuser"/>
 
     <sql:query dataSource="${snapshot}" var="result">
-        SELECT * from TRANSACTIONS
+        SELECT TRANSID, USERID, FILMID, TITLE, TRANSDATE, AMOUNT 
+        from TRANSACTIONS
     </sql:query>
 
     <table border="1" width="100%">
@@ -34,6 +35,7 @@
             <th>Film ID</th>
             <th>Title</th>
             <th>Transaction Date</th>
+            <th>Amount</th>
             
 
 
@@ -45,6 +47,7 @@
             <td><c:out value="${row.FILMID}"/></td>
             <td><c:out value="${row.TITLE}"/></td>
             <td><c:out value="${row.TRANSDATE}"/></td>
+            <td><c:out value="${row.AMOUNT}"/></td>
             
 
 
