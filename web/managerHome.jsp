@@ -91,40 +91,67 @@
         </c:forEach>
     </table>
         
-         <%-- AVAILABLE INVENTORY --%>
+         <%-- SALES --%>
         
-        <h1>Available Inventory</h1>
+        <h1>Sales</h1>
     <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/sakila"
                        user="root"  password="nbuser"/>
     <sql:query dataSource="${snapshot}" var="result">
-         SELECT  I.film_id AS FilmID, F.title AS Title, COUNT(I.film_id) AS NumAvailable
-         FROM inventory AS I
-         JOIN film AS F
-         ON I.film_id = F.film_id
-         GROUP BY I.film_id
+         SELECT TRANSID, USERID, FILMID, TITLE, TRANSDATE, AMOUNT
+         FROM TRANSACTIONS
     </sql:query>
 
     <table border="1" width="100%">
         <tr>
+            <th>Transaction ID</th>
+            <th>User ID</th>
             <th>Film ID</th>
             <th>Title</th>
-            <th>Number Available</th>
+            <th>Transaction Date</th>
+            <th>Amount</th>
         </tr>
         <c:forEach var="row" items="${result.rows}">
             <tr>
+            <td><c:out value="${row.TRANSID}"/></td>
+            <td><c:out value="${row.USERID}"/></td>
             <td><c:out value="${row.FILMID}"/></td>
             <td><c:out value="${row.TITLE}"/></td>
-            <td><c:out value="${row.NUMAVAILABLE}"/></td>
+            <td><c:out value="${row.TRANSDATE}"/></td>
+            <td><c:out value="${row.AMOUNT}"/></td>
             </tr>
         </c:forEach>
     </table>
         
         
         
+        <%-- REVENUE --%>
         
+        <h1>REVENUE</h1>
+    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                       url="jdbc:mysql://localhost:3306/sakila"
+                       user="root"  password="nbuser"/>
+    <sql:query dataSource="${snapshot}" var="result">
+         SELECT SUM(AMOUNT) AS REVENUE
+         FROM TRANSACTIONS
+    </sql:query>
+
+    <table border="1" width="100%">
+        <tr>
+            <th>REVENUE</th>
+        </tr>
+        <c:forEach var="row" items="${result.rows}">
+            <tr>
+            <td><c:out value="${row.REVENUE}"/></td>
+            </tr>
+        </c:forEach>
+    </table>
         
-        
+         <br> <br> 
+         
+         <a href="inventory.jsp">Available Inventory</a> <br> <br> 
+         
+         <a href="reports.jsp">Best Sellers and Worst Sellers</a>
         
         
 </body>
