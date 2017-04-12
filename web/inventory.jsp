@@ -23,7 +23,7 @@
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
         <sql:query dataSource="${snapshot}" var="result">
-            SELECT  I.film_id AS FilmID, F.title AS Title, COUNT(I.film_id) AS NumAvailable
+            SELECT F.title AS Title, COUNT(I.film_id) AS NumAvailable
             FROM inventory AS I
             JOIN film AS F
             ON I.film_id = F.film_id
@@ -32,13 +32,11 @@
 
         <table border="1" width="100%">
             <tr>
-                <th>Film ID</th>
                 <th>Title</th>
                 <th>Number Available</th>
             </tr>
             <c:forEach var="row" items="${result.rows}">
                 <tr>
-                    <td><c:out value="${row.FilmID}"/></td>
                     <td><c:out value="${row.TITLE}"/></td>
                     <td><c:out value="${row.NUMAVAILABLE}"/></td>
                 </tr>
