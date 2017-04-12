@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <title>Checkout Page</title>
     </head>
     <body>
-        
+
         <ul>
             <li><a href="customerHome.jsp">Home</a></li>
             <li><a href="cart.jsp">Cart</a></li>
@@ -23,9 +23,9 @@
             <li><a class="active" href="checkout.jsp">Checkout</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul>
-        
+
         <br> <br>
-        
+
         <h1>Checkout</h1>
         <table border="0">
             <tbody>
