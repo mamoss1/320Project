@@ -16,6 +16,13 @@
         <title>Reports</title>
     </head>
     <body>
+        
+        <ul>
+            <li><a href="managerHome.jsp">Home</a></li>
+            <li><a href="inventory.jsp">Inventory</a></li>
+            <li><a class="active" href="reports.jsp">Reports</a></li>            
+        </ul>
+        
         <%-- BEST SELLERS --%>
 
         <h1>Best Sellers</h1>
@@ -69,6 +76,45 @@
                 </tr>
             </c:forEach>
         </table>
+            
+            <%-- NOT SOLD IN PAST YEAR --%>
+
+        <h1>Movies Not Sold in the Past Year</h1>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT *
+            FROM TRANSACTIONS
+            WHERE TRANSDATE < '2016-12-30' 
+        </sql:query>
+
+        <table border="1" width="100%">
+            <tr>
+                <th>User ID</th>
+                <th>Film ID</th>
+                <th>Title</th>
+                <th>Transaction Date</th>
+                <th>Amount</th>
+                <th>Credit Card</th>
+                <th>Credit Card Expiration Date</th>
+                <th>Credit Card Pin</th>
+            </tr>
+            <c:forEach var="row" items="${result.rows}">
+                <tr>
+                    <td><c:out value="${row.USERID}"/></td>
+                    <td><c:out value="${row.FILMID}"/></td>
+                    <td><c:out value="${row.TITLE}"/></td>
+                    <td><c:out value="${row.TRANSDATE}"/></td>
+                    <td><c:out value="${row.AMOUNT}"/></td>
+                    <td><c:out value="${row.CREDITCARD}"/></td>
+                    <td><c:out value="${row.CCEXP}"/></td>
+                    <td><c:out value="${row.CCPIN}"/></td>
+                </tr>
+            </c:forEach>
+        </table>
+            
+            
         <br> <br>
         <a href="managerHome.jsp">Back</a>
     </body>

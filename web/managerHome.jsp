@@ -17,7 +17,11 @@
     </head>
     <body>
 
-
+        <ul>
+            <li><a class="active" href="managerHome.jsp">Home</a></li>
+            <li><a href="inventory.jsp">Inventory</a></li>
+            <li><a href="reports.jsp">Reports</a></li>            
+        </ul>
 
         <%-- CUSTOMER PROFILES --%>
 
@@ -66,7 +70,6 @@
 
         <table border="1" width="100%">
             <tr>
-                <th>Transaction ID</th>
                 <th>User ID</th>
                 <th>Film ID</th>
                 <th>Title</th>
@@ -78,7 +81,6 @@
             </tr>
             <c:forEach var="row" items="${result.rows}">
                 <tr>
-                    <td><c:out value="${row.TRANSID}"/></td>
                     <td><c:out value="${row.USERID}"/></td>
                     <td><c:out value="${row.FILMID}"/></td>
                     <td><c:out value="${row.TITLE}"/></td>
@@ -98,13 +100,12 @@
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
         <sql:query dataSource="${snapshot}" var="result">
-            SELECT TRANSID, USERID, FILMID, TITLE, TRANSDATE, AMOUNT
+            SELECT USERID, FILMID, TITLE, TRANSDATE, AMOUNT
             FROM TRANSACTIONS
         </sql:query>
 
         <table border="1" width="100%">
             <tr>
-                <th>Transaction ID</th>
                 <th>User ID</th>
                 <th>Film ID</th>
                 <th>Title</th>
@@ -113,7 +114,6 @@
             </tr>
             <c:forEach var="row" items="${result.rows}">
                 <tr>
-                    <td><c:out value="${row.TRANSID}"/></td>
                     <td><c:out value="${row.USERID}"/></td>
                     <td><c:out value="${row.FILMID}"/></td>
                     <td><c:out value="${row.TITLE}"/></td>
@@ -151,7 +151,7 @@
 
         <a href="inventory.jsp">Available Inventory</a> <br> <br> 
 
-        <a href="reports.jsp">Best Sellers and Worst Sellers</a>
+        <a href="reports.jsp">Reports</a>
 
 
     </body>

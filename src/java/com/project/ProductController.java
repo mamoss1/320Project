@@ -68,7 +68,7 @@ public class ProductController extends HttpServlet {
           }
           catch (Exception e)
           {
-              //Display "Ivalid login, please try again"
+              e.printStackTrace();
           } 
         
         

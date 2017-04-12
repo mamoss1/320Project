@@ -16,6 +16,14 @@
         <title>Inventory</title>
     </head>
     <body>
+        
+        <ul>
+            <li><a href="managerHome.jsp">Home</a></li>
+            <li><a class="active" href="inventory.jsp">Inventory</a></li>
+            <li><a href="reports.jsp">Reports</a></li>            
+        </ul>
+        
+        
         <%-- AVAILABLE INVENTORY --%>
         <a href="managerHome.jsp">Back</a> <br> <br>
         <h1>Available Inventory</h1>
