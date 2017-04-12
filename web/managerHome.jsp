@@ -7,56 +7,152 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <title>Manager Home</title>
     </head>
     <body>
-        <h1>Manager Home</h1>
 
-        
-         <table border=1>
-        <thead>
-        <tr>
-               <th>USERID</th>
-               <th>FIRSTNAME</th>
-               <th>LASTNAME</th>
-               <th>EMAIL</th>
-               <th>PASSWORD</th>
-        </tr>
-        </thead>
-        <tbody>
-            <%
-           Class.forName("com.mysql.jdbc.Driver");
-           Connection connection= null;
-           connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
-           Statement stmt= null;
-           stmt=connection.createStatement();    
-           Statement statement = connection.createStatement();
-           String query= " SELECT USERID, FIRSTNAME, LASTNAME, EMAIL, PASSWORD FROM USERS WHERE ISMANAGER = '0'";
-           ResultSet rs= null;
-           rs= stmt.executeQuery(query);
-             %>
-        <c:forEach var="row" items="${rs.rows}">
-        <tr>             
-        <td><c:out value="${row.USERID}"/></td>
-        <td><c:out value="${row.FIRSTNAME}"/></td>           
-        <td><c:out value="${row.LASTNAME}"/></td> 
-        <td><c:out value="${row.EMAIL}"/></td>
-        <td><c:out value="${row.PASSWORD}"/></td>
-        </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</body>
+
+
+        <%-- CUSTOMER PROFILES --%>
+
+
+        <h1>Customer Profiles</h1>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT USERID,  FIRSTNAME, LASTNAME, EMAIL, PASSWORD
+            FROM USERS 
+            WHERE ISMANAGER = '0'
+        </sql:query>
+
+        <table border="1" width="100%">
+            <tr>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+            <c:forEach var="row" items="${result.rows}">
+                <tr>
+                    <td><c:out value="${row.USERID}"/></td>
+                    <td><c:out value="${row.FIRSTNAME}"/></td>
+                    <td><c:out value="${row.LASTNAME}"/></td>
+                    <td><c:out value="${row.EMAIL}"/></td>
+                    <td><c:out value="${row.PASSWORD}"/></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+
+        <%-- MOVIE CHECKOUTS --%>
+
+        <h1>Movie Checkouts</h1>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT * 
+            FROM TRANSACTIONS
+        </sql:query>
+
+        <table border="1" width="100%">
+            <tr>
+                <th>Transaction ID</th>
+                <th>User ID</th>
+                <th>Film ID</th>
+                <th>Title</th>
+                <th>Transaction Date</th>
+                <th>Amount</th>
+                <th>Credit Card</th>
+                <th>Credit Card Expiration Date</th>
+                <th>Credit Card Pin Number</th>
+            </tr>
+            <c:forEach var="row" items="${result.rows}">
+                <tr>
+                    <td><c:out value="${row.TRANSID}"/></td>
+                    <td><c:out value="${row.USERID}"/></td>
+                    <td><c:out value="${row.FILMID}"/></td>
+                    <td><c:out value="${row.TITLE}"/></td>
+                    <td><c:out value="${row.TRANSDATE}"/></td>
+                    <td><c:out value="${row.AMOUNT}"/></td>
+                    <td><c:out value="${row.CREDITCARD}"/></td>
+                    <td><c:out value="${row.CCEXP}"/></td>
+                    <td><c:out value="${row.CCPIN}"/></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+        <%-- SALES --%>
+
+        <h1>Sales</h1>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT TRANSID, USERID, FILMID, TITLE, TRANSDATE, AMOUNT
+            FROM TRANSACTIONS
+        </sql:query>
+
+        <table border="1" width="100%">
+            <tr>
+                <th>Transaction ID</th>
+                <th>User ID</th>
+                <th>Film ID</th>
+                <th>Title</th>
+                <th>Transaction Date</th>
+                <th>Amount</th>
+            </tr>
+            <c:forEach var="row" items="${result.rows}">
+                <tr>
+                    <td><c:out value="${row.TRANSID}"/></td>
+                    <td><c:out value="${row.USERID}"/></td>
+                    <td><c:out value="${row.FILMID}"/></td>
+                    <td><c:out value="${row.TITLE}"/></td>
+                    <td><c:out value="${row.TRANSDATE}"/></td>
+                    <td><c:out value="${row.AMOUNT}"/></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+
+
+        <%-- REVENUE --%>
+
+        <h1>REVENUE</h1>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT SUM(AMOUNT) AS REVENUE
+            FROM TRANSACTIONS
+        </sql:query>
+
+        <table border="1" width="100%">
+            <tr>
+                <th>REVENUE</th>
+            </tr>
+            <c:forEach var="row" items="${result.rows}">
+                <tr>
+                    <td><c:out value="${row.REVENUE}"/></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+        <br> <br> 
+
+        <a href="inventory.jsp">Available Inventory</a> <br> <br> 
+
+        <a href="reports.jsp">Best Sellers and Worst Sellers</a>
+
+
+    </body>
 </html>

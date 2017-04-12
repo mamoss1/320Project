@@ -16,11 +16,10 @@
     </head>
        
      
- <%--the code below allow the user to search for a film by the category
- , actor's name or store. 
- --%>
+ <%--the code below allows the user to search for a film 
+by the category, actor's name or store. --%>
 <body>
-      <form action="listProduct.jsp" method="POST"> 
+      <form action="search.jsp" method="POST"> 
      
             Please enter the Film category:
             <input type="text" name="category">
