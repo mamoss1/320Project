@@ -17,59 +17,59 @@
     </head>
     <body>
         <%-- BEST SELLERS --%>
-        
+
         <h1>Best Sellers</h1>
-    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-                       url="jdbc:mysql://localhost:3306/sakila"
-                       user="root"  password="nbuser"/>
-    <sql:query dataSource="${snapshot}" var="result">
-         SELECT SUM(AMOUNT) AS REVENUE, FILMID
-         FROM TRANSACTIONS
-         GROUP BY FILMID
-         ORDER BY SUM(AMOUNT) DESC
-    </sql:query>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT SUM(AMOUNT) AS REVENUE, FILMID
+            FROM TRANSACTIONS
+            GROUP BY FILMID
+            ORDER BY SUM(AMOUNT) DESC
+        </sql:query>
 
-    <table border="1" width="100%">
-        <tr>
-            <th>Revenue</th>
-            <th>Film ID</th>
-        </tr>
-        <c:forEach var="row" items="${result.rows}">
+        <table border="1" width="100%">
             <tr>
-            <td><c:out value="${row.REVENUE}"/></td>
-            <td><c:out value="${row.FILMID}"/></td>
+                <th>Revenue</th>
+                <th>Film ID</th>
             </tr>
-        </c:forEach>
-    </table>
-         
-         
-         
-         <%-- WORST SELLERS --%>
-        
+            <c:forEach var="row" items="${result.rows}">
+                <tr>
+                    <td><c:out value="${row.REVENUE}"/></td>
+                    <td><c:out value="${row.FILMID}"/></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+
+
+        <%-- WORST SELLERS --%>
+
         <h1>Worst Sellers</h1>
-    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-                       url="jdbc:mysql://localhost:3306/sakila"
-                       user="root"  password="nbuser"/>
-    <sql:query dataSource="${snapshot}" var="result">
-         SELECT SUM(AMOUNT) AS REVENUE, FILMID
-         FROM TRANSACTIONS
-         GROUP BY FILMID
-         ORDER BY SUM(AMOUNT) ASC
-    </sql:query>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT SUM(AMOUNT) AS REVENUE, FILMID
+            FROM TRANSACTIONS
+            GROUP BY FILMID
+            ORDER BY SUM(AMOUNT) ASC
+        </sql:query>
 
-    <table border="1" width="100%">
-        <tr>
-            <th>Revenue</th>
-            <th>Film ID</th>
-        </tr>
-        <c:forEach var="row" items="${result.rows}">
+        <table border="1" width="100%">
             <tr>
-            <td><c:out value="${row.REVENUE}"/></td>
-            <td><c:out value="${row.FILMID}"/></td>
+                <th>Revenue</th>
+                <th>Film ID</th>
             </tr>
-        </c:forEach>
-    </table>
-         <br> <br>
-         <a href="managerHome.jsp">Back</a>
+            <c:forEach var="row" items="${result.rows}">
+                <tr>
+                    <td><c:out value="${row.REVENUE}"/></td>
+                    <td><c:out value="${row.FILMID}"/></td>
+                </tr>
+            </c:forEach>
+        </table>
+        <br> <br>
+        <a href="managerHome.jsp">Back</a>
     </body>
 </html>
