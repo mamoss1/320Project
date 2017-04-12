@@ -24,33 +24,25 @@
                        user="root"  password="nbuser"/>
 
     <sql:query dataSource="${snapshot}" var="result">
-        SELECT TRANSID, USERID, FILMID, TITLE, TRANSDATE, AMOUNT 
+        SELECT USERID, FILMID, TITLE, TRANSDATE, AMOUNT 
         from TRANSACTIONS
     </sql:query>
 
     <table border="1" width="100%">
         <tr>
-            <th>Transaction ID</th>
             <th>User ID</th>
             <th>Film ID</th>
             <th>Title</th>
             <th>Transaction Date</th>
             <th>Amount</th>
-            
-
-
         </tr>
         <c:forEach var="row" items="${result.rows}">
             <tr>
-                <td><c:out value="${row.TRANSID}"/></td>
             <td><c:out value="${row.USERID}"/></td>
             <td><c:out value="${row.FILMID}"/></td>
             <td><c:out value="${row.TITLE}"/></td>
             <td><c:out value="${row.TRANSDATE}"/></td>
             <td><c:out value="${row.AMOUNT}"/></td>
-            
-
-
             </tr>
         </c:forEach>
     </table>

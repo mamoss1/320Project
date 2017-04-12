@@ -25,6 +25,8 @@
 
         <%-- CUSTOMER PROFILES --%>
 
+        <h1>Welcome! Please see below for: </h1>
+          <h1>  Customer Profiles, Movie Checkouts, Sales, and Revenue</h1><br> <br>
 
         <h1>Customer Profiles</h1>
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -127,7 +129,7 @@
 
         <%-- REVENUE --%>
 
-        <h1>REVENUE</h1>
+        <h1>Revenue</h1>
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
