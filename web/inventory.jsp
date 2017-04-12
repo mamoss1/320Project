@@ -21,11 +21,10 @@
             <li><a href="managerHome.jsp">Home</a></li>
             <li><a class="active" href="inventory.jsp">Inventory</a></li>
             <li><a href="reports.jsp">Reports</a></li>            
-        </ul>
+        </ul> <br> <br>
         
         
         <%-- AVAILABLE INVENTORY --%>
-        <a href="managerHome.jsp">Back</a> <br> <br>
         <h1>Available Inventory</h1>
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"

@@ -21,7 +21,7 @@
             <li><a href="managerHome.jsp">Home</a></li>
             <li><a href="inventory.jsp">Inventory</a></li>
             <li><a class="active" href="reports.jsp">Reports</a></li>            
-        </ul>
+        </ul> <br> <br>
         
         <%-- BEST SELLERS --%>
 
@@ -113,9 +113,5 @@
                 </tr>
             </c:forEach>
         </table>
-            
-            
-        <br> <br>
-        <a href="managerHome.jsp">Back</a>
     </body>
 </html>

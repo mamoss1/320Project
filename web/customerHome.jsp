@@ -13,26 +13,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!
-        <%-- </h1><form name="customerPage" action="CustomerController">
-            <select name="User Type">
-                <option value="1">Search Movies</option>
-                <option value="2">View Wish List</option>
-                <option value="3">View Cart</option>
-                <option value="4">Checkout</option>
-            </select>
-            <input type="submit" value="Submit" name="submit" />
-        </form> --%>
-        
-        <form method="GET" action='CustomerController' name="frmCustomerHome">
+        <ul>
+            <li><a class="active" href="customerHome.jsp">Home</a></li>
+            <li><a href="cart.jsp">Cart</a></li>
+            <li><a href="wishlist.jsp">Wishlist</a></li>    
+            <li><a href="search.jsp">Search</a></li>     
+            <li><a href="checkout.jsp">Checkout</a></li>     
+        </ul> <br> <br> <br>
             <% String email = session.getAttribute("email").toString();
             %>
-            Hello<%=email%>
-            Search: <input type="radio" name="page" value="1" /> <br> 
-            Wishlist: <input type="radio" name="page" value="2" /> <br> 
-            Cart: <input type="radio" name="page" value="3" /> <br> 
-            Checkout: <input type="radio" name="page" value="4" /> <br> 
-            <input type="submit" value="Submit" />
-        </form>
+            Hello <%=email%>!
     </body>
 </html>

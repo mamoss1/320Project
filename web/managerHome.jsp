@@ -21,7 +21,7 @@
             <li><a class="active" href="managerHome.jsp">Home</a></li>
             <li><a href="inventory.jsp">Inventory</a></li>
             <li><a href="reports.jsp">Reports</a></li>            
-        </ul>
+        </ul> <br> <br>
 
         <%-- CUSTOMER PROFILES --%>
 
@@ -146,13 +146,5 @@
                 </tr>
             </c:forEach>
         </table>
-
-        <br> <br> 
-
-        <a href="inventory.jsp">Available Inventory</a> <br> <br> 
-
-        <a href="reports.jsp">Reports</a>
-
-
     </body>
 </html>
