@@ -18,10 +18,11 @@
             <li><a href="cart.jsp">Cart</a></li>
             <li><a href="wishlist.jsp">Wishlist</a></li>    
             <li><a href="search.jsp">Search</a></li>     
-            <li><a href="checkout.jsp">Checkout</a></li>     
+            <li><a href="checkout.jsp">Checkout</a></li>
+            <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> <br> <br>
             <% String email = session.getAttribute("email").toString();
             %>
-            Hello <%=email%>!
+            <h1>Hello <%=email%>!</h1>
     </body>
 </html>

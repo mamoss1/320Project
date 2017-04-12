@@ -20,8 +20,14 @@
         <ul>
             <li><a href="managerHome.jsp">Home</a></li>
             <li><a href="inventory.jsp">Inventory</a></li>
-            <li><a class="active" href="reports.jsp">Reports</a></li>            
+            <li><a class="active" href="reports.jsp">Reports</a></li>
+            <li><a href="home.jsp">Log Out</a></li>               
         </ul> <br> <br>
+        
+        
+        
+        
+        
         
         <%-- BEST SELLERS --%>
 
@@ -51,6 +57,12 @@
 
 
 
+            
+            
+            
+            
+            
+            
         <%-- WORST SELLERS --%>
 
         <h1>Worst Sellers</h1>
@@ -77,6 +89,15 @@
             </c:forEach>
         </table>
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <%-- NOT SOLD IN PAST YEAR --%>
 
         <h1>Movies Not Sold in the Past Year</h1>
@@ -94,13 +115,13 @@
                 <th>Film ID</th>
                 <th>Title</th>
                 <th>Transaction Date</th>
-               </tr>
+            </tr>
             <c:forEach var="row" items="${result.rows}">
                 <tr>
                     <td><c:out value="${row.FILMID}"/></td>
                     <td><c:out value="${row.TITLE}"/></td>
                     <td><c:out value="${row.TRANSDATE}"/></td>
-                    </tr>
+                </tr>
             </c:forEach>
         </table>
     </body>
