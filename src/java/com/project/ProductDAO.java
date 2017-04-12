@@ -18,53 +18,46 @@ public class ProductDAO {
         connection = DbConnectionUtil.getConnection();
     }
 
-   
-    public User getUser(String email)
-    {
+    public User getUser(String email) {
         User user = new User();
-        Statement preparedStatement;
+        PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.createStatement();
-            ResultSet rs = preparedStatement.executeQuery("select * from users where email = ' " + email + " ' ");
-            while (rs.next()) 
-            {
-            user.setUser_id(rs.getInt("userid"));
-            user.setFirstName(rs.getString("firstname"));
-            user.setLastName(rs.getString("lastname"));
-            user.setEmail(rs.getString("email"));
-            user.setIsManager(rs.getBoolean("ismanager"));
-            user.setPassword(rs.getString("password"));
+
+            preparedStatement = connection.prepareStatement("select * from users where email=?");
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                user.setUser_id(rs.getInt("userid"));
+                user.setFirstName(rs.getString("firstname"));
+                user.setLastName(rs.getString("lastname"));
+                user.setEmail(rs.getString("email"));
+                user.setIsManager(rs.getBoolean("ismanager"));
+                user.setPassword(rs.getString("password"));
             }
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return user;
     }
-    
-    
-    
-    
-    
+
     public void addUser(User user) {
-//        try {
-//            PreparedStatement preparedStmt = connection
-//                    .prepareStatement("INSERT INTO USERS(firstname, lastname, email, is manager, password) values (?, ?, ?, ?, ?)");
-//
-//            
-//            preparedStmt.setInt(1, product.getOrder_num());
-//            preparedStmt.setInt(2, product.getCustomer_id());
-//            preparedStmt.setInt(3, product.getProduct_id());
-//            preparedStmt.setInt(4, product.getQuality());
-//            preparedStmt.setInt(5, product.getShipping_cost());
-//            preparedStmt.setDate(6, new java.sql.Date(product.getSales_date().getTime()));
-//            preparedStmt.setDate(7, new java.sql.Date(product.getShipping_date().getTime()));
-//            preparedStmt.executeUpdate();
-//            
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            PreparedStatement preparedStmt = connection
+                    .prepareStatement("INSERT INTO USERS(firstname, lastname, email, ismanager, password) values (?, ?, ?, ?, ?)");
+
+            
+            preparedStmt.setString(1, user.getFirstName());
+            preparedStmt.setString(2, user.getLastName());
+            preparedStmt.setString(3, user.getEmail());
+            preparedStmt.setBoolean(4, user.getIsManager());
+            preparedStmt.setString(5, user.getPassword());
+            preparedStmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 //    public void deleteProduct(int order_num) {

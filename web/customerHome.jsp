@@ -24,13 +24,14 @@
             <input type="submit" value="Submit" name="submit" />
         </form> --%>
         
-        <form method="GET" action='CustomerController' name="frmUserLogin">
-            <select name="User Type">
-                <option value="1">Search Movies</option>
-                <option value="2">View Wish List</option>
-                <option value="3">View Cart</option>
-                <option value="4">Checkout</option>
-            </select> 
+        <form method="GET" action='CustomerController' name="frmCustomerHome">
+            <% String email = session.getAttribute("email").toString();
+            %>
+            Hello<%=email%>
+            Search: <input type="radio" name="page" value="1" /> <br> 
+            Wishlist: <input type="radio" name="page" value="2" /> <br> 
+            Cart: <input type="radio" name="page" value="3" /> <br> 
+            Checkout: <input type="radio" name="page" value="4" /> <br> 
             <input type="submit" value="Submit" />
         </form>
     </body>

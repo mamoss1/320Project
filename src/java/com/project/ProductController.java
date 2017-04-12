@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 //https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.1/api/javax.servlet.http.HttpServlet.html
 
@@ -29,6 +30,10 @@ public class ProductController extends HttpServlet {
         String forward="";
      
         String action = request.getParameter("action");
+      
+        HttpSession session = request.getSession();
+        String email = request.getParameter("email");
+        session.setAttribute("email", email);
         
         
         try

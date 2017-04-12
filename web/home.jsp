@@ -41,7 +41,9 @@
             Customer: <input type="radio" name="isManager" value="False" /> <br> 
             
             <input type="submit" value="Submit" />
-        </form>    
+        </form>
+            
+                  
         
     </body>
 </html>
