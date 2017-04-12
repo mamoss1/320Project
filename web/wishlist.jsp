@@ -16,6 +16,14 @@
     </head>
           
 <body>
+    <ul>
+            <li><a href="customerHome.jsp">Home</a></li>
+            <li><a href="cart.jsp">Cart</a></li>
+            <li><a class="active" href="wishlist.jsp">Wishlist</a></li>    
+            <li><a href="search.jsp">Search</a></li>     
+            <li><a href="checkout.jsp">Checkout</a></li>
+            <li><a href="home.jsp">Log Out</a></li>
+        </ul> <br> <br> <br>
     <table border=1>
         <thead>
             <TR>

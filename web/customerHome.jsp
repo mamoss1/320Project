@@ -24,5 +24,7 @@
             <% String email = session.getAttribute("email").toString();
             %>
             <h1>Hello <%=email%>!</h1>
+            <h1>Welcome to Crimson Video Store</h1>
+            <h2>Please use the navigation bar above to navigate our website.</h2>
     </body>
 </html>

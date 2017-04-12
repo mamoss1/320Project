@@ -19,6 +19,14 @@
  <%--the code below allows the user to search for a film 
 by the category, actor's name or store. --%>
 <body>
+    <ul>
+            <li><a href="customerHome.jsp">Home</a></li>
+            <li><a href="cart.jsp">Cart</a></li>
+            <li><a href="wishlist.jsp">Wishlist</a></li>    
+            <li><a class="active" href="search.jsp">Search</a></li>     
+            <li><a href="checkout.jsp">Checkout</a></li>
+            <li><a href="home.jsp">Log Out</a></li>
+        </ul> <br> <br> <br>
       <form action="search.jsp" method="POST"> 
      
             Please enter the Film category:
@@ -101,7 +109,6 @@ by the category, actor's name or store. --%>
          
         </tbody>
     </table>
-    <p><a href="">Add Product</a></p>
 </body>
 
 </html>
