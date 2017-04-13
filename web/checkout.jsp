@@ -42,8 +42,9 @@
             });
         </script>
         <% String email = session.getAttribute("email").toString();
+           Integer user_id=(Integer)session.getAttribute("user_id");
             %>
-       
+        
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/sakila"
                        user="root"  password="nbuser"/>
@@ -56,14 +57,35 @@
         WHERE EMAIL = '<%=email%>'
     </sql:query>   
         
+    <sql:query dataSource="${snapshot}" var="result1">
+        SELECT USERID, FILMID, TITLE 
+        from CART 
+        WHERE USERID = <%=user_id%>
+    </sql:query>     
         
+        <h2>Cart</h2>
+        <table border="1" width="100%">
+        <tr>
+            <th>User ID</th>
+            <th>Film ID</th>
+            <th>Title</th>
+            
+        </tr>
+        <c:forEach var="row" items="${result1.rows}">
+            <tr>
+            <td><c:out value="${row.USERID}"/></td>
+            <td><c:out value="${row.FILMID}"/></td>
+            <td><c:out value="${row.TITLE}"/></td>
+            </tr>
+        </c:forEach>
+    </table>    
     
+         
         
-        
- 
+        <h2>Payment</h2>
         <form method="POST" action='CheckoutController' name="frmAddTransaction">
             User ID : <input type="text"  name="userID" readonly="readonly"
-                             value="<c:forEach var="row" items="${result.rows}"> <c:out value="${row.USERID}" /> </c:forEach>"<c:out value="${transaction.userID}" />" /> <br /> 
+                             value="<%=user_id%>"<c:out value="${transaction.userID}" />" /> <br /> 
             Film ID : <input
                 type="text" name="filmID"
                 value="<c:out value="${transaction.filmID}" />" /> <br /> 
