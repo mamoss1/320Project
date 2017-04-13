@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.application.Platform;
 
 public class ProductDAO {
 
@@ -58,6 +62,25 @@ public class ProductDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    /**
+     *
+     * @param infoMessage
+     * @param titleBar
+     */
+    public static void infoBox(String infoMessage, String titleBar)
+    {
+        infoBox(infoMessage, titleBar, null);
+    }
+    
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage)
+    {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
     }
 
 //    public void deleteProduct(int order_num) {

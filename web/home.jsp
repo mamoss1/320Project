@@ -19,14 +19,14 @@
         <form method="GET" action="ProductController" name="frmUserLogin">
             Email : <input type="text" name="email"
                              value="<c:out value="${user.email}" />" /> <br> 
-            Password: <input type="text" name="password" value= "<c:out value="${user.password}" />" /> <br> 
+            Password: <input type="password" name="password" value= "<c:out value="${user.password}" />" /> <br> 
             <input type="submit" value="Submit" />
         </form>
           
         <h1>User Register</h1>    
          <%-- User Register --%>   
         <form method="POST" action="ProductController" name="frmUserRegister">
-            User ID: <input type="text" readonly="readonly" name="order_num"
+           <input type="hidden" readonly="readonly" name="order_num"
                              value="<c:out value="${user.user_id}" />" /> <br> 
             First Name : <input type="text" name="firstName"
                              value="<c:out value="${user.firstName}" />" /> <br> 
@@ -34,10 +34,9 @@
                              value= "<c:out value="${user.lastName}" />" /> <br> 
             Email : <input type="text" name="email"
                              value="<c:out value="${user.email}" />" /> <br> 
-            Password: <input
-                type="text" name="password"
+            Password: <input type="password" name="password"
                 value= "<c:out value="${user.password}" />" /> <br> 
-            Manager: <input type="radio" name="isManager" value="True" /> <br> 
+            Manager: <input type="radio" name="isManager" value="True" checked/> <br> 
             Customer: <input type="radio" name="isManager" value="False" /> <br> 
             
             <input type="submit" value="Submit" />
