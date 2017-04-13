@@ -18,16 +18,21 @@
     </head>
     <body>
         <h1>Your Transactions</h1>
+        <% String email = session.getAttribute("email").toString();
+            %>
 
     <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/sakila"
                        user="root"  password="nbuser"/>
 
-    <sql:query dataSource="${snapshot}" var="result">
+   
+
+    <sql:query dataSource="${snapshot}" var="result2">
         SELECT USERID, FILMID, TITLE, TRANSDATE, AMOUNT 
         from TRANSACTIONS
+        
     </sql:query>
-
+  
     <table border="1" width="100%">
         <tr>
             <th>User ID</th>
@@ -36,7 +41,7 @@
             <th>Transaction Date</th>
             <th>Amount</th>
         </tr>
-        <c:forEach var="row" items="${result.rows}">
+        <c:forEach var="row" items="${result2.rows}">
             <tr>
             <td><c:out value="${row.USERID}"/></td>
             <td><c:out value="${row.FILMID}"/></td>

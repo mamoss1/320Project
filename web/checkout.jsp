@@ -7,6 +7,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -39,10 +44,48 @@
                 $('input[name=expDate]').datepicker();
             });
         </script>
+        <% String email = session.getAttribute("email").toString();
+            %>
+            
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                       url="jdbc:mysql://localhost:3306/sakila"
+                       user="root"  password="nbuser"/>
+    
+   
 
+    <sql:query dataSource="${snapshot}" var="result">
+        SELECT USERID 
+        from USERS
+        WHERE EMAIL = '<%=email%>'
+    </sql:query>   
+        
+        
+    <sql:query dataSource="${snapshot}" var="result1">
+        SELECT USERID, FILMID, TITLE 
+        from CART JOIN USERS
+        WHERE USERS.USERID = '<%=email%>' AND CART.USERID
+    </sql:query>     
+        
+        <table border="1" width="100%">
+        <tr>
+            <th>User ID</th>
+            <th>Film ID</th>
+            <th>Title</th>
+            
+        </tr>
+        <c:forEach var="row" items="${result1.rows}">
+            <tr>
+            <td><c:out value="${row.USERID}"/></td>
+            <td><c:out value="${row.FILMID}"/></td>
+            <td><c:out value="${row.TITLE}"/></td>
+            </tr>
+        </c:forEach>
+    </table>
+        
+ 
         <form method="POST" action='CheckoutController' name="frmAddTransaction">
-            User ID : <input type="text"  name="userID"
-                             value="<c:out value="${transaction.userID}" />" /> <br /> 
+            User ID : <input type="text"  name="userID" readonly="readonly"
+                             value="<c:forEach var="row" items="${result.rows}"> <c:out value="${row.USERID}" /> </c:forEach>"<c:out value="${transaction.userID}" />" /> <br /> 
             Film ID : <input
                 type="text" name="filmID"
                 value="<c:out value="${transaction.filmID}" />" /> <br /> 

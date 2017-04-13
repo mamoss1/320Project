@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/CheckoutController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -18,7 +22,7 @@
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/ProductController</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <description/>
         <display-name>DescriptionController</display-name>
         <servlet-name>DescriptionController</servlet-name>
@@ -28,7 +32,7 @@
         <servlet-name>DescriptionController</servlet-name>
         <url-pattern>/DescriptionController</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <description/>
         <display-name>WishListController</display-name>
         <servlet-name>WishListController</servlet-name>
@@ -38,7 +42,7 @@
         <servlet-name>WishListController</servlet-name>
         <url-pattern>/WishListController</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <description/>
         <display-name>CartController</display-name>
         <servlet-name>CartController</servlet-name>
@@ -47,5 +51,13 @@
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CheckoutController</servlet-name>
+        <servlet-class>com.project.CheckoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/CheckoutController</url-pattern>
     </servlet-mapping>
 </web-app>
