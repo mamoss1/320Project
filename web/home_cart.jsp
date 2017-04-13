@@ -20,11 +20,12 @@
 <body>  
   
       <ul>
-            <li><a class="active" href="customerHome.jsp">Home</a></li>
-            <li><a href="home_cart.jsp">Cart</a></li>
+            <li><a href="customerHome.jsp">Home</a></li>
+            <li><a class="active" href="home_cart.jsp">Cart</a></li>
             <li><a href="home_wishlist.jsp">Wishlist</a></li>    
             <li><a href="search.jsp">Search</a></li>     
             <li><a href="checkout.jsp">Checkout</a></li>
+            <li><a href="recomendations.jsp">Movie Recommendations</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> <br> <br>
             <% String email = session.getAttribute("email").toString();

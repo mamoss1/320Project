@@ -26,12 +26,7 @@
     <%-- This page show the details of the film, so that the user can know more about it.--%>
     
       <ul>
-            <li><a class="active" href="customerHome.jsp">Home</a></li>
-            <li><a href="home_cart.jsp">Cart</a></li>
-            <li><a href="home_wishlist.jsp">Wishlist</a></li>    
-            <li><a href="search.jsp">Search</a></li>     
-            <li><a href="checkout.jsp">Checkout</a></li>
-            <li><a href="home.jsp">Log Out</a></li>
+            <li><a href="search.jsp">Back</a></li>     
         </ul> <br> <br> <br>
           <h1>Welcome to the Description Page!</h1>
     <table border=1>

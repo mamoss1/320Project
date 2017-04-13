@@ -1,6 +1,6 @@
 <%-- 
-    Document   : inventory
-    Created on : Apr 11, 2017, 8:19:46 PM
+    Document   : recomendations
+    Created on : Apr 12, 2017, 8:10:25 PM
     Author     : memos
 --%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
@@ -13,41 +13,43 @@
     <head>
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inventory</title>
+        <title>Movie Recommendations</title>
     </head>
     <body>
-        
         <ul>
-            <li><a href="managerHome.jsp">Home</a></li>
-            <li><a class="active" href="inventory.jsp">Inventory</a></li>
-            <li><a href="updateInventory.jsp">Update Inventory</a></li>
-            <li><a href="reports.jsp">Reports</a></li>
-            <li><a href="home.jsp">Log Out</a></li>            
-        </ul> <br> <br>
+            <li><a href="customerHome.jsp">Home</a></li>
+            <li><a href="cart.jsp">Cart</a></li>
+            <li><a href="wishlist.jsp">Wishlist</a></li>    
+            <li><a href="search.jsp">Search</a></li>     
+            <li><a href="checkout.jsp">Checkout</a></li>
+            <li><a class="active" href="recomendations.jsp">Movie Recommendations</a></li>
+            <li><a href="home.jsp">Log Out</a></li>
+        </ul> <br> <br> <br>
         
+        <h1>The Following Are Our Bestsellers: </h1><br>
         
-        <%-- AVAILABLE INVENTORY --%>
-        <h1>Available Inventory</h1>
+        <%-- BEST SELLERS --%>
+
+        <h1>Best Sellers</h1>
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
         <sql:query dataSource="${snapshot}" var="result">
-            SELECT F.title AS Title, COUNT(I.film_id) AS NumAvailable
-            FROM inventory AS I
-            JOIN film AS F
-            ON I.film_id = F.film_id
-            GROUP BY I.film_id
+            SELECT SUM(AMOUNT) AS REVENUE, FILMID
+            FROM TRANSACTIONS
+            GROUP BY FILMID
+            ORDER BY SUM(AMOUNT) DESC
         </sql:query>
 
         <table border="1" width="100%">
             <tr>
-                <th>Title</th>
-                <th>Number Available</th>
+                <th>Revenue</th>
+                <th>Film ID</th>
             </tr>
             <c:forEach var="row" items="${result.rows}">
                 <tr>
-                    <td><c:out value="${row.TITLE}"/></td>
-                    <td><c:out value="${row.NUMAVAILABLE}"/></td>
+                    <td><c:out value="${row.REVENUE}"/></td>
+                    <td><c:out value="${row.FILMID}"/></td>
                 </tr>
             </c:forEach>
         </table>

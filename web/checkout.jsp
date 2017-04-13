@@ -22,21 +22,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
-        <title>Checkout Page</title>
+        <title>Checkout</title>
     </head>
     <body>
-
-        <ul>
+<ul>
             <li><a href="customerHome.jsp">Home</a></li>
-            <li><a href="cart.jsp">Cart</a></li>
-            <li><a href="wishlist.jsp">Wishlist</a></li>    
+            <li><a href="home_cart.jsp">Cart</a></li>
+            <li><a href="home_wishlist.jsp">Wishlist</a></li>    
             <li><a href="search.jsp">Search</a></li>     
             <li><a class="active" href="checkout.jsp">Checkout</a></li>
             <li><a href="recomendations.jsp">Movie Recommendations</a></li>
             <li><a href="home.jsp">Log Out</a></li>
-        </ul>
-
-        <br> <br>
+        </ul> <br> <br> <br>
 
         <h1>Checkout</h1>
         <script>

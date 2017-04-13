@@ -20,8 +20,9 @@
         <ul>
             <li><a href="managerHome.jsp">Home</a></li>
             <li><a href="inventory.jsp">Inventory</a></li>
+            <li><a href="updateInventory.jsp">Update Inventory</a></li>
             <li><a class="active" href="reports.jsp">Reports</a></li>
-            <li><a href="home.jsp">Log Out</a></li>               
+            <li><a href="home.jsp">Log Out</a></li>            
         </ul> <br> <br>
         
         

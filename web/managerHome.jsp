@@ -16,10 +16,10 @@
         <title>Manager Home</title>
     </head>
     <body>
-
         <ul>
             <li><a class="active" href="managerHome.jsp">Home</a></li>
             <li><a href="inventory.jsp">Inventory</a></li>
+            <li><a href="updateInventory.jsp">Update Inventory</a></li>
             <li><a href="reports.jsp">Reports</a></li>
             <li><a href="home.jsp">Log Out</a></li>            
         </ul> <br> <br>
@@ -27,7 +27,7 @@
         <%-- CUSTOMER PROFILES --%>
 
         <h1>Welcome! Please see below for: </h1>
-          <h1>  Customer Profiles, Movie Checkouts, Sales, and Revenue</h1><br> <br>
+         <h1>  Customer Profiles, Movie Checkouts, Sales, and Revenue</h1><br> <br>
 
         <h1>Customer Profiles</h1>
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
