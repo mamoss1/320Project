@@ -1,8 +1,9 @@
 <%-- 
-    Document   : Wishlist
-    Created on : Apr 6, 2017, 9:40:16 AM
+    Document   : home_wishlist
+    Created on : Apr 12, 2017, 10:58:07 PM
     Author     : carte
 --%>
+
 
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
@@ -26,15 +27,15 @@
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> <br> <br>
             <% String email = session.getAttribute("email").toString();
-           Integer user_id=(Integer)session.getAttribute("user_id");
             %>
-          <h1>Welcome to the Wishlist Page!</h1>
+            <h1>Welcome to the Wishlist Page!</h1>
     <table border=1>
         <thead>
             <TR>
                 <th> User ID </th>
                 <th> Film ID </th>
-                <th> Film Title </th>         
+                <th> Film Title </th>
+            
             </TR>
         </thead>
         <tbody>
@@ -47,8 +48,8 @@
             Statement statement=connection.createStatement();
             String titles = request.getParameter("title");                
          
-           String command="insert into wishlist (USERID,TITLE) values('" + user_id + "','" + titles + "')";
-                 statement.executeUpdate(command);          
+          // String command="insert into wishlist (USERID,TITLE) values(2,'" + titles + "')";
+            //     statement.executeUpdate(command);          
            String query="select t.USERID, f.film_id, t.TITLE  from wishlist as t join film as f"
                            + " on t.title=f.title "
                            + " join users as u "
@@ -71,7 +72,6 @@
                <TD> <%= rs.getString(1) %> </TD>
                 <TD> <%= rs.getString(2) %> </TD>
                 <TD> <%=title%> </TD>
-            
             </tr>
              <%      
                 }

@@ -1,8 +1,9 @@
 <%-- 
-    Document   : Wishlist
-    Created on : Apr 6, 2017, 9:40:16 AM
+    Document   : home_cart
+    Created on : Apr 12, 2017, 10:58:54 PM
     Author     : carte
 --%>
+
 
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
@@ -16,7 +17,8 @@
         <title>Cart</title>
     </head>
           
-<body>
+<body>  
+  
       <ul>
             <li><a class="active" href="customerHome.jsp">Home</a></li>
             <li><a href="home_cart.jsp">Cart</a></li>
@@ -26,30 +28,29 @@
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> <br> <br>
             <% String email = session.getAttribute("email").toString();
-           Integer user_id=(Integer)session.getAttribute("user_id");
             %>
-          <h1>Welcome to the Wishlist Page!</h1>
+        
+            <h1>Welcome to the Cart Page!</h1>
+    
     <table border=1>
         <thead>
             <TR>
                 <th> User ID </th>
                 <th> Film ID </th>
-                <th> Film Title </th>         
+                <th> Film Title </th>
+          
             </TR>
         </thead>
         <tbody>
             <%
-           Class.forName("com.mysql.jdbc.Driver");
+          Class.forName("com.mysql.jdbc.Driver");
             Connection connection= null;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
+           connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
             Statement stmt= null;
             stmt=connection.createStatement();
-            Statement statement=connection.createStatement();
-            String titles = request.getParameter("title");                
-         
-           String command="insert into wishlist (USERID,TITLE) values('" + user_id + "','" + titles + "')";
-                 statement.executeUpdate(command);          
-           String query="select t.USERID, f.film_id, t.TITLE  from wishlist as t join film as f"
+           // Statement statement=connection.createStatement();
+            String titles = request.getParameter("title");                                     
+           String query="select t.USERID, f.film_id, t.TITLE  from cart as t join film as f"
                            + " on t.title=f.title "
                            + " join users as u "
                            + " on t.USERID=u.USERID "
@@ -71,7 +72,6 @@
                <TD> <%= rs.getString(1) %> </TD>
                 <TD> <%= rs.getString(2) %> </TD>
                 <TD> <%=title%> </TD>
-            
             </tr>
              <%      
                 }
@@ -80,6 +80,10 @@
             </table>
         </tbody>
    
+      
+         
+    
+ 
 </body>
 
 </html> 

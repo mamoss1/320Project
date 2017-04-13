@@ -21,12 +21,19 @@ by the category, actor's name or store. --%>
 <body>
     <ul>
             <li><a href="customerHome.jsp">Home</a></li>
-            <li><a href="cart.jsp">Cart</a></li>
-            <li><a href="wishlist.jsp">Wishlist</a></li>    
+            <li><a href="home_cart.jsp">Cart</a></li>
+            <li><a href="home_wishlist.jsp">Wishlist</a></li>    
             <li><a class="active" href="search.jsp">Search</a></li>     
             <li><a href="checkout.jsp">Checkout</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> <br> <br>
+        <br> <br> <br>
+            <% String email = session.getAttribute("email").toString();
+            %>
+          
+            <h1>Welcome to the Search Page!</h1>
+        
+        
       <form action="search.jsp" method="POST"> 
      
             Please enter the Film category:
@@ -39,7 +46,7 @@ by the category, actor's name or store. --%>
               <input type="text" name="L_actor">
             <br>
             Please enter the Store Number:
-              <input type="text" name="store">
+              <input type="number" name="store">
             <br>
             <input type="submit" value="Submit">
         </form>
@@ -67,7 +74,7 @@ by the category, actor's name or store. --%>
                   String L_actor=request.getParameter("L_actor");
                   String store= request.getParameter("store");
            
-            if(category!=null){
+       
             
              String query= " select F.title from store as S join inventory as I"
                      + " on S.store_id=I.store_id"
@@ -104,7 +111,7 @@ by the category, actor's name or store. --%>
                </tr>
              <%      
                 }
-}
+
             %>
          
         </tbody>

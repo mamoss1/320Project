@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Wishlist
+    Document   : Cart
     Created on : Apr 6, 2017, 9:40:16 AM
     Author     : carte
 --%>
@@ -15,23 +15,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <title>Cart</title>
     </head>
-          
+         
 <body>
-     <ul>
-            <li><a href="customerHome.jsp">Home</a></li>
-            <li><a class="active" href="cart.jsp">Cart</a></li>
-            <li><a href="wishlist.jsp">Wishlist</a></li>    
+      <ul>
+            <li><a class="active" href="customerHome.jsp">Home</a></li>
+            <li><a href="home_cart.jsp">Cart</a></li>
+            <li><a href="home_wishlist.jsp">Wishlist</a></li>    
             <li><a href="search.jsp">Search</a></li>     
             <li><a href="checkout.jsp">Checkout</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> <br> <br>
+            <% String email = session.getAttribute("email").toString();
+              Integer user_id=(Integer)session.getAttribute("user_id");
+            %>
+              <h1>Welcome to the Cart Page!</h1>
+         
     <table border=1>
         <thead>
             <TR>
                 <th> User ID </th>
                 <th> Film ID </th>
                 <th> Film Title </th>
-                <th colspan=2>Action</th> 
             </TR>
         </thead>
         <tbody>
@@ -44,11 +48,13 @@
             Statement statement=connection.createStatement();
             String titles = request.getParameter("title");                
          
-           String command="insert into cart (USERID,TITLE) values(2,'" + titles + "')";
+           String command="insert into cart (USERID,TITLE) values('" + user_id + "','" + titles + "')";
                  statement.executeUpdate(command);          
            String query="select t.USERID, f.film_id, t.TITLE  from cart as t join film as f"
-                           + " on t.title=f.title"
-                           + " where USERID=2";
+                           + " on t.title=f.title "
+                           + " join users as u "
+                           + " on t.USERID=u.USERID "
+                           + " where u.EMAIL='"+ email + "'";
            ResultSet rs=null;
            rs=stmt.executeQuery(query);
            while(rs.next()){            
@@ -66,8 +72,6 @@
                <TD> <%= rs.getString(1) %> </TD>
                 <TD> <%= rs.getString(2) %> </TD>
                 <TD> <%=title%> </TD>
-                 <td><a href=""> Checkout</a></td>
-               <td><a href="CartController?action=delete&title="<c:out value="<%=title%>"/> Remove from Cart</a></td> 
             </tr>
              <%      
                 }
