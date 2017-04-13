@@ -46,7 +46,7 @@
         </script>
         <% String email = session.getAttribute("email").toString();
             %>
-            
+       
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/sakila"
                        user="root"  password="nbuser"/>
@@ -60,27 +60,8 @@
     </sql:query>   
         
         
-    <sql:query dataSource="${snapshot}" var="result1">
-        SELECT USERID, FILMID, TITLE 
-        from CART JOIN USERS
-        WHERE USERS.USERID = '<%=email%>' AND CART.USERID
-    </sql:query>     
+    
         
-        <table border="1" width="100%">
-        <tr>
-            <th>User ID</th>
-            <th>Film ID</th>
-            <th>Title</th>
-            
-        </tr>
-        <c:forEach var="row" items="${result1.rows}">
-            <tr>
-            <td><c:out value="${row.USERID}"/></td>
-            <td><c:out value="${row.FILMID}"/></td>
-            <td><c:out value="${row.TITLE}"/></td>
-            </tr>
-        </c:forEach>
-    </table>
         
  
         <form method="POST" action='CheckoutController' name="frmAddTransaction">
