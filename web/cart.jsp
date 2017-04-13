@@ -46,26 +46,31 @@
             Statement stmt= null;
             stmt=connection.createStatement();
             Statement statement=connection.createStatement();
-            String titles = request.getParameter("title");                
-         
-           String command="insert into cart (USERID,TITLE) values('" + user_id + "','" + titles + "')";
+            String titles = request.getParameter("title"); 
+            
+            String query="select film_id from film where title='"+ titles +"'";
+            ResultSet rss=null;
+           rss=stmt.executeQuery(query);
+           while(rss.next()){
+    
+            int FILMID=rss.getInt("film_id");
+           int film_id =FILMID;
+                    session.setAttribute("film_id",film_id);
+           }
+           %>
+           
+            <%
+                   Integer film_id=(Integer)session.getAttribute("film_id");
+           String command="insert into cart (USERID,FILMID,TITLE) values('" + user_id + "','" + film_id + "','" + titles + "')";
                  statement.executeUpdate(command);          
-           String query="select t.USERID, f.film_id, t.TITLE  from cart as t join film as f"
-                           + " on t.title=f.title "
-                           + " join users as u "
-                           + " on t.USERID=u.USERID "
-                           + " where u.EMAIL='"+ email + "'";
+           String query2="select USERID,FILMID, TITLE  from cart where USERID='"+ user_id + "'";
            ResultSet rs=null;
-           rs=stmt.executeQuery(query);
+           rs=stmt.executeQuery(query2);
            while(rs.next()){            
              %>
              <tr>
                  <%
-                  String title= rs.getString("title");
-              
-                
-                 
-                                    
+                  String title= rs.getString("title");                          
                  %>
         
             <tr>
