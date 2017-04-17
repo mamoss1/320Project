@@ -26,10 +26,10 @@
             <li><a href="checkout.jsp">Checkout</a></li>
             <li><a href="recomendations.jsp">Movie Recommendations</a></li>
             <li><a href="home.jsp">Log Out</a></li>
-        </ul> <br> <br> <br>
+        </ul> <br>
             <% String email = session.getAttribute("email").toString();
             %>
-            <h1>Welcome to the Wishlist Page!</h1>
+            <h1>Wishlist</h1>
     <table border=1>
         <thead>
             <TR>

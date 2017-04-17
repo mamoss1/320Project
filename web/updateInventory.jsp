@@ -11,7 +11,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home Page</title>
+        <title>Update Inventory</title>
     </head>
     <body>
         
@@ -21,7 +21,7 @@
             <li><a class="active" href="updateInventory.jsp">Update Inventory</a></li>
             <li><a href="reports.jsp">Reports</a></li>
             <li><a href="home.jsp">Log Out</a></li>            
-        </ul> <br> <br>
+        </ul> <br>
         
         <h1>Delete Film</h1>
         <%-- Delete movie --%>

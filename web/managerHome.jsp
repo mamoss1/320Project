@@ -22,7 +22,7 @@
             <li><a href="updateInventory.jsp">Update Inventory</a></li>
             <li><a href="reports.jsp">Reports</a></li>
             <li><a href="home.jsp">Log Out</a></li>            
-        </ul> <br> <br>
+        </ul> <br> 
 
         <%-- CUSTOMER PROFILES --%>
 

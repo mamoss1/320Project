@@ -33,7 +33,7 @@
             <li><a class="active" href="checkout.jsp">Checkout</a></li>
             <li><a href="recomendations.jsp">Movie Recommendations</a></li>
             <li><a href="home.jsp">Log Out</a></li>
-        </ul> <br> <br> <br>
+        </ul> <br>
 
         <h1>Checkout</h1>
         <script>
