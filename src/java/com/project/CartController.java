@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CartController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String Cart = "/cart.jsp";
-    private static String SEARCH = "/listProduct.jsp";
+    private static String SEARCH = "/search.jsp";
     private CartDAO dao;
 
     public CartController() {
@@ -40,7 +40,7 @@ public class CartController extends HttpServlet {
            forward =Cart; 
             request.setAttribute("wishlists", dao.getAllCart());       
             } else {
-                forward="listProduct.jsp";
+                forward="search.jsp";
             }
             RequestDispatcher view= request.getRequestDispatcher(forward);
             
