@@ -19,6 +19,7 @@
     <body>
         <h1>Your Transactions</h1>
         <% String email = session.getAttribute("email").toString();
+            Integer user_id=(Integer)session.getAttribute("user_id");
             %>
 
     <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -30,6 +31,7 @@
     <sql:query dataSource="${snapshot}" var="result2">
         SELECT USERID, FILMID, TITLE, TRANSDATE, AMOUNT 
         from TRANSACTIONS
+        WHERE USERID = <%=user_id%>
         
     </sql:query>
   
