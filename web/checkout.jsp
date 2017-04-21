@@ -57,6 +57,8 @@
             rs.next();
             String film_id = rs.getString(1);
             String title = rs.getString(2);
+            
+            
         %>
         <%
 
@@ -103,12 +105,7 @@
         <form method="POST" action='CheckoutController' name="frmAddTransaction">
             User ID : <input type="text"  name="userID" readonly="readonly"
                              value="<%=user_id%>"<c:out value="${transaction.userID}" />" /> <br /> 
-            Film ID : <input
-                type="text" name="filmID" readonly="readonly"
-                value="<%=film_id%>"<c:out value="${transaction.filmID}" />" /> <br /> 
-            Film Title : <input
-                type="text" name="title" readonly="readonly"
-                value="<%=title%>"<c:out value="${transaction.title}" />" /> <br /> 
+            
             Credit Card : <input
                 type="text" name="creditCard"
                 value="<c:out value="${transaction.creditCard}" />" /> <br /> 
