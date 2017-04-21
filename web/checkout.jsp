@@ -54,9 +54,12 @@
             String query = "SELECT FILMID, TITLE FROM CART WHERE USERID =" + user_id;
             ResultSet rs = null;
             rs = stmt.executeQuery(query);
-            rs.next();
-            String film_id = rs.getString(1);
-            String title = rs.getString(2);
+            Integer count = 0;
+            while(rs.next()){
+                count++;
+            }
+            
+            float amount = count * (float)2.99;
             
             
         %>
@@ -115,7 +118,7 @@
             Security Code : <input type="text" name="pin"
                                    value="<c:out value="${transaction.pin}" />" /> <br />
             Amount : <input type="text" name="amount"
-                            value="2.99"<c:out value="${transaction.amount}" />" /> <br />
+                            value="<%=amount%>" /> <br />
             <input type="submit" value="Checkout" />
         </form>
 

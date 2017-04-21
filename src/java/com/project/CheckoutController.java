@@ -52,8 +52,8 @@ public class CheckoutController extends HttpServlet {
 //
 //        trans.setTitle(request.getParameter("title"));
 
-        String amount = request.getParameter("amount");
-        trans.setAmount(Float.parseFloat(amount));
+        float amount = (float) 2.99;
+        trans.setAmount(amount);
 
         trans.setCreditCard(request.getParameter("creditCard"));
 
