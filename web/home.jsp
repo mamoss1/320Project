@@ -20,15 +20,7 @@
             Email : <input type="text" name="email"
                            value="<c:out value="${user.email}" />" /> <br> 
             Password: <input type="password" name="password" value= "<c:out value="${user.password}" />" /> <br> <br>
-            
-            <botDetect:captcha id="exampleCaptcha"/>
-            <div class="validationDiv">
-                <input id="captchaCode" type="text" name="captchaCode"
-                       value="${BasicExample.userAnswer}"/>
-                <input type="submit" name="submit" value="Submit" />
-                <span class="correct">${BasicExample.captchaCorrect}</span>
-                <span class="incorrect">${BasicExample.captchaIncorrect}</span>
-            </div>
+            <input type="submit" value="Submit" />
         </form>
 
         <h1>User Register</h1>    
@@ -45,12 +37,16 @@
             Password: <input type="password" name="password"
                              value= "<c:out value="${user.password}" />" /> <br> 
             Manager: <input type="radio" name="isManager" value="True" checked/> <br> 
-            Customer: <input type="radio" name="isManager" value="False" /> <br> 
+            Customer: <input type="radio" name="isManager" value="False" /> <br> <br>
 
-            <input type="submit" value="Submit" />
+            <botDetect:captcha id="exampleCaptcha"/>
+            <div class="validationDiv">
+                <input id="captchaCode" type="text" name="captchaCode"
+                       value="${BasicExample.userAnswer}"/> <br> <br>
+                <input type="submit" name="submit" value="Submit" />
+                <span class="correct">${BasicExample.captchaCorrect}</span>
+                <span class="incorrect">${BasicExample.captchaIncorrect}</span>
+            </div>
         </form>
-
-
-
     </body>
 </html>

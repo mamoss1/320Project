@@ -60,10 +60,33 @@
 
             %>
           
-   
+            <% String em = session.getAttribute("email").toString();
+             Class.forName("com.mysql.jdbc.Driver");
+            Connection con= null;
+           con=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
+            Statement st= null;
+            st=con.createStatement();
+           Statement state=con.createStatement();         
+           String q="select FIRSTNAME from users"
+                           + " where EMAIL='"+ em + "'";
+           ResultSet rset=null;
+           rset=st.executeQuery(q);
+           while(rset.next()){            
+             %>
+             <tr>
+                 <%
+                    String name=rset.getString("FIRSTNAME");
+                    session.setAttribute("FIRSTNAME", name);
+                 %>
+        
+         
+             <%      
+                }
+                String fn = session.getAttribute("FIRSTNAME").toString();
+            %>
             
           
-            <h1>Welcome <%=email%>!</h1>
+            <h1>Welcome <%=fn%>!</h1>
             <h1>Welcome to Crimson Video Store</h1>
             <h2>Please use the navigation bar above to navigate our website.</h2>
     </body>

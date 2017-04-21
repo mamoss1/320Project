@@ -56,9 +56,8 @@ public class ProductController extends HttpServlet {
                     forward = "/newHome.jsp";
                 }
             } catch (Exception e) {
-                forward = "/home.jsp";
+                forward = "/newHome.jsp";
             }
-
         }
         else
         {

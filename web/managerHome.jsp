@@ -24,9 +24,35 @@
             <li><a href="home.jsp">Log Out</a></li>            
         </ul> <br> 
 
+        <% String email = session.getAttribute("email").toString();
+             Class.forName("com.mysql.jdbc.Driver");
+            Connection connection= null;
+           connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
+            Statement stmt= null;
+            stmt=connection.createStatement();
+           Statement statement=connection.createStatement();         
+           String query="select FIRSTNAME from users"
+                           + " where EMAIL='"+ email + "'";
+           ResultSet rs=null;
+           rs=stmt.executeQuery(query);
+           while(rs.next()){            
+             %>
+             <tr>
+                 <%
+                    String name=rs.getString("FIRSTNAME");
+                    session.setAttribute("FIRSTNAME", name);
+                 %>
+        
+         
+             <%      
+                }
+                String fn = session.getAttribute("FIRSTNAME").toString();
+            %>
+        
+        
         <%-- CUSTOMER PROFILES --%>
 
-        <h1>Welcome! Please see below for: </h1>
+        <h1>Welcome <%=fn%>! Please see below for: </h1>
          <h1>  Customer Profiles, Movie Checkouts, Sales, and Revenue</h1><br> <br>
 
         <h1>Customer Profiles</h1>
