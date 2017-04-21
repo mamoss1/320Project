@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 
 //https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.1/api/javax.servlet.http.HttpServlet.html
 public class ProductController extends HttpServlet {
@@ -53,7 +53,7 @@ public class ProductController extends HttpServlet {
                         forward = CUSTOMER;
                     }
                 } else {
-                    forward = "/home.jsp";
+                    forward = "/newHome.jsp";
                 }
             } catch (Exception e) {
                 forward = "/home.jsp";
@@ -65,23 +65,6 @@ public class ProductController extends HttpServlet {
             forward = "/home.jsp";
         }
 
-        //OLD CODE
-//        if (action.equalsIgnoreCase("delete")){
-//            int order_num = Integer.parseInt(request.getParameter("order_num"));
-//            dao.deleteProduct(order_num);
-//            forward = LIST_PRODUCT;
-//            request.setAttribute("products", dao.getAllProducts());    
-//        } else if (action.equalsIgnoreCase("edit")){
-//            forward = INSERT_OR_EDIT;
-//            int order_num = Integer.parseInt(request.getParameter("order_num"));
-//            Product product = dao.getProductById(order_num);
-//            request.setAttribute("product", product);
-//        } else if (action.equalsIgnoreCase("listProduct")){
-//            forward = LIST_PRODUCT;
-//            request.setAttribute("products", dao.getAllProducts());
-//        } else {
-//            forward = INSERT_OR_EDIT;
-//        }
         //fowards it to the specific page
         RequestDispatcher view = request.getRequestDispatcher(forward);
 
@@ -120,15 +103,5 @@ public class ProductController extends HttpServlet {
             view.forward(request, response);
         }
 
-//        String order_num = request.getParameter("order_num");
-//        if(order_num == null || order_num.isEmpty())
-//        {
-//            dao.addProduct(product);
-//        }
-//        else
-//        {
-//            product.setOrder_num(Integer.parseInt(order_num));
-//            dao.updateProduct(product);
-//        }
     }
 }
