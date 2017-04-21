@@ -17,15 +17,15 @@
     <head>
 
         <link rel="stylesheet" type="text/css" href="style.css">
-        
-        
+
+
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
         <title>Checkout</title>
     </head>
     <body>
-<ul>
+        <ul>
             <li><a href="customerHome.jsp">Home</a></li>
             <li><a href="home_cart.jsp">Cart</a></li>
             <li><a href="home_wishlist.jsp">Wishlist</a></li>    
@@ -42,56 +42,73 @@
             });
         </script>
         <% String email = session.getAttribute("email").toString();
-           Integer user_id=(Integer)session.getAttribute("user_id");
-            %>
-        
-        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-                       url="jdbc:mysql://localhost:3306/sakila"
-                       user="root"  password="nbuser"/>
-    
-   
+            Integer user_id = (Integer) session.getAttribute("user_id");
 
-    <sql:query dataSource="${snapshot}" var="result">
-        SELECT USERID 
-        from USERS
-        WHERE EMAIL = '<%=email%>'
-    </sql:query>   
-        
-    <sql:query dataSource="${snapshot}" var="result1">
-        SELECT USERID, FILMID, TITLE 
-        from CART 
-        WHERE USERID = <%=user_id%>
-    </sql:query>     
-        
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = null;
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root", "nbuser");
+            Statement stmt = null;
+            stmt = connection.createStatement();
+            // Statement statement=connection.createStatement();
+            
+            String query = "SELECT FILMID, TITLE FROM CART WHERE USERID =" + user_id;
+            ResultSet rs = null;
+            rs = stmt.executeQuery(query);
+            Integer count = 0;
+            while(rs.next()){
+                count++;
+            }
+            
+            float amount = count * (float)2.99;
+            
+            
+        %>
+        <%
+
+        %>
+
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+
+
+
+        <sql:query dataSource="${snapshot}" var="result">
+            SELECT USERID 
+            from USERS
+            WHERE EMAIL = '<%=email%>'
+        </sql:query>   
+
+        <sql:query dataSource="${snapshot}" var="result1">
+            SELECT USERID, FILMID, TITLE 
+            from CART 
+            WHERE USERID = <%=user_id%>
+        </sql:query>     
+
         <h2>Cart</h2>
         <table border="1" width="100%">
-        <tr>
-            <th>User ID</th>
-            <th>Film ID</th>
-            <th>Title</th>
-            
-        </tr>
-        <c:forEach var="row" items="${result1.rows}">
             <tr>
-            <td><c:out value="${row.USERID}"/></td>
-            <td><c:out value="${row.FILMID}"/></td>
-            <td><c:out value="${row.TITLE}"/></td>
+                <th>User ID</th>
+                <th>Film ID</th>
+                <th>Title</th>
+
             </tr>
-        </c:forEach>
-    </table>    
-    
-         
-        
+            <c:forEach var="row" items="${result1.rows}">
+                <tr>
+                    <td><c:out value="${row.USERID}"/></td>
+                    <td><c:out value="${row.FILMID}"/></td>
+                    <td><c:out value="${row.TITLE}"/></td>
+                </tr>
+            </c:forEach>
+        </table>    
+
+
+
         <h2>Payment</h2>
         <form method="POST" action='CheckoutController' name="frmAddTransaction">
             User ID : <input type="text"  name="userID" readonly="readonly"
                              value="<%=user_id%>"<c:out value="${transaction.userID}" />" /> <br /> 
-            Film ID : <input
-                type="text" name="filmID"
-                value="<c:out value="${transaction.filmID}" />" /> <br /> 
-            Film Title : <input
-                type="text" name="title"
-                value="<c:out value="${transaction.title}" />" /> <br /> 
+            
             Credit Card : <input
                 type="text" name="creditCard"
                 value="<c:out value="${transaction.creditCard}" />" /> <br /> 
@@ -99,9 +116,9 @@
                 type="text" name="expDate"
                 value="<fmt:formatDate pattern="MM/dd/yyyy" value="${transaction.expDate}" />" /> <br /> 
             Security Code : <input type="text" name="pin"
-                           value="<c:out value="${transaction.pin}" />" /> <br />
+                                   value="<c:out value="${transaction.pin}" />" /> <br />
             Amount : <input type="text" name="amount"
-                           value="<c:out value="${transaction.amount}" />" /> <br />
+                            value="<%=amount%>" /> <br />
             <input type="submit" value="Checkout" />
         </form>
 

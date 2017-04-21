@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -43,15 +44,16 @@ public class CheckoutController extends HttpServlet {
 
         Transaction trans = new Transaction();
         String userID = request.getParameter("userID");
+        Integer user_id = Integer.parseInt(userID);
         trans.setUserID(Integer.parseInt(userID));
 
-        String filmID = request.getParameter("filmID");
-        trans.setFilmID(Integer.parseInt(filmID));
+//        String filmID = request.getParameter("filmID");
+//        trans.setFilmID(Integer.parseInt(filmID));
+//
+//        trans.setTitle(request.getParameter("title"));
 
-        trans.setTitle(request.getParameter("title"));
-
-        String amount = request.getParameter("amount");
-        trans.setAmount(Float.parseFloat(amount));
+        float amount = (float) 2.99;
+        trans.setAmount(amount);
 
         trans.setCreditCard(request.getParameter("creditCard"));
 
@@ -78,7 +80,15 @@ public class CheckoutController extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        dao.addTransaction(trans);
+        
+        try{
+            dao.addTransactions(user_id,trans);
+            dao.removeCart(user_id);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        
 
 //        user.setEmail(request.getParameter("email"));
 //        String userid = request.getParameter("userid");
