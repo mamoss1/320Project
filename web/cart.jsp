@@ -3,7 +3,6 @@
     Created on : Apr 6, 2017, 9:40:16 AM
     Author     : carte
 --%>
-
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
@@ -60,9 +59,30 @@
            %>
            
             <%
+                String query1 ="select count(*) from cart where USERID='"+ user_id + "'";
+                 ResultSet rs1=null;
+           rs1=stmt.executeQuery(query1);
+           while(rs1.next()){ 
+            
+                       Integer num =rs1.getInt(1);
+              //figure this shit out tonight   
+                    
+                    if (num > 4){
+                   
                    Integer film_id=(Integer)session.getAttribute("film_id");
+           String command="insert into wishlist (USERID,FILMID,TITLE) values('" + user_id + "','" + film_id + "','" + titles + "')";
+                 statement.executeUpdate(command);     
+                    }
+                    else {
+                    
+                     Integer film_id=(Integer)session.getAttribute("film_id");
            String command="insert into cart (USERID,FILMID,TITLE) values('" + user_id + "','" + film_id + "','" + titles + "')";
-                 statement.executeUpdate(command);          
+                 statement.executeUpdate(command);
+                    
+                    }
+                        
+           }
+           
            String query2="select USERID,FILMID, TITLE  from cart where USERID='"+ user_id + "'";
            ResultSet rs=null;
            rs=stmt.executeQuery(query2);
@@ -80,6 +100,8 @@
             </tr>
              <%      
                 }
+               
+             
 
             %>
             </table>

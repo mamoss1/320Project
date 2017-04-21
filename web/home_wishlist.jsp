@@ -4,11 +4,12 @@
     Author     : carte
 --%>
 
-
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
     
     <head>
@@ -28,6 +29,7 @@
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br>
             <% String email = session.getAttribute("email").toString();
+            Integer user_id=(Integer)session.getAttribute("user_id");
             %>
             <h1>Wishlist</h1>
     <table border=1>
@@ -36,6 +38,7 @@
                 <th> User ID </th>
                 <th> Film ID </th>
                 <th> Film Title </th>
+                <th colspan=1>Action</th> 
             
             </TR>
         </thead>
@@ -49,30 +52,23 @@
             Statement statement=connection.createStatement();
             String titles = request.getParameter("title");                
          
-          // String command="insert into wishlist (USERID,TITLE) values(2,'" + titles + "')";
-            //     statement.executeUpdate(command);          
-           String query="select t.USERID, f.film_id, t.TITLE  from wishlist as t join film as f"
-                           + " on t.title=f.title "
-                           + " join users as u "
-                           + " on t.USERID=u.USERID "
-                           + " where u.EMAIL='"+ email + "'";
+                 
+           String query="select USERID,FILMID, TITLE  from wishlist where USERID='"+ user_id + "'";
+ 
            ResultSet rs=null;
            rs=stmt.executeQuery(query);
            while(rs.next()){            
              %>
              <tr>
                  <%
-                  String title= rs.getString("title");
-              
-                
-                 
-                                    
+                  String title= rs.getString("title");                   
                  %>
         
             <tr>
                <TD> <%= rs.getString(1) %> </TD>
-                <TD> <%= rs.getString(2) %> </TD>
-                <TD> <%=title%> </TD>
+               <TD> <%= rs.getString(2) %> </TD>
+               <TD> <%=title%> </TD>
+               <td><a href="CartController?action=d&title=<c:out value="<%=title%>"/>">Add to Cart</a></td>
             </tr>
              <%      
                 }

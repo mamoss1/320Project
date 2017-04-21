@@ -8,6 +8,8 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
     
     <head>
@@ -34,7 +36,8 @@
             <TR>
                 <th> User ID </th>
                 <th> Film ID </th>
-                <th> Film Title </th>         
+                <th> Film Title </th>
+                 <th colspan=1>Action</th> 
             </TR>
         </thead>
         <tbody>
@@ -77,6 +80,7 @@
                <TD> <%= rs.getString(1) %> </TD>
                 <TD> <%= rs.getString(2) %> </TD>
                 <TD> <%=title%> </TD>
+                   <td><a href="CartController?action=d&title=<c:out value="<%=title%>"/>"> Add to Cart</a></td>
             
             </tr>
              <%      

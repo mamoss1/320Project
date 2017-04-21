@@ -29,6 +29,7 @@
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br>
             <% String email = session.getAttribute("email").toString();
+              Integer user_id=(Integer)session.getAttribute("user_id");
             %>
         
             <h1>Cart</h1>
@@ -51,22 +52,14 @@
             stmt=connection.createStatement();
            // Statement statement=connection.createStatement();
             String titles = request.getParameter("title");                                     
-           String query="select t.USERID, f.film_id, t.TITLE  from cart as t join film as f"
-                           + " on t.title=f.title "
-                           + " join users as u "
-                           + " on t.USERID=u.USERID "
-                           + " where u.EMAIL='"+ email + "'";
+           String query="select USERID,FILMID, TITLE  from cart where USERID='"+ user_id + "'";
            ResultSet rs=null;
            rs=stmt.executeQuery(query);
            while(rs.next()){            
              %>
              <tr>
                  <%
-                  String title= rs.getString("title");
-              
-                
-                 
-                                    
+                  String title= rs.getString("title");           
                  %>
         
             <tr>

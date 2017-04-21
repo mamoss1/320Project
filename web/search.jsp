@@ -105,8 +105,8 @@ by the category, actor's name or store. --%>
              
           <td><a href="DescriptionController?action=d&title=<c:out value="<%=title%>"/>"><%=title%></a></td>
           <td><a href="CartController?action=d&title=<c:out value="<%=title%>"/>">Cart</a></td>
-            <td><a href="WishListController?action=d&title=<c:out value="<%=title%>"/>">Wish List</a></td>     
-         
+          <td><a href="WishListController?action=d&title=<c:out value="<%=title%>"/>">Wish List</a></td>     
+             
 
                </tr>
              <%      
