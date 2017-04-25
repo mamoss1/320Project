@@ -3,12 +3,16 @@
     Author     : memos
 */
 
+/* Background
+*/
 body {
     background-color: darkgray;
     font-family: Arial;
 
 }
 
+/* H1 Text
+*/
 h1 {
     letter-spacing: 3px;
     font-size: 1.5em;
@@ -16,23 +20,31 @@ h1 {
     font-weight: bold;
 }
 
+/* H2 Text
+*/
 h2 {
     font-size: 1.4em;
     color: white;
     font-weight: normal;
 }
 
+/* Table Setup
+*/
 table {
     width: 550px;
     padding: 10px;
     background-color: lightgray;
 }
 
+/* Table, Headers, and Rows Setup
+*/
 table, th, td {
     border: 1px solid black;
     padding: 20px;
 }
 
+/* Rows for Table
+*/
 td {
     vertical-align: middle;
     text-align: left;
@@ -41,6 +53,8 @@ td {
     background-color: lightgray;
 }
 
+/* Headers for Table
+*/
 th {
     background-color: lightgray;
     color: black;
@@ -48,35 +62,49 @@ th {
     vertical-align: middle;
 }
 
-
+/* Link
+*/
 a:link {
     color: white;
 }
 
+/* Visited Link
+*/
 a:visited {
     color: white;
 }
 
+/* Hovering Over a Link
+*/
 a:hover {
-    color: lightgray;
+    color: crimson;
 }
 
-
+/* When Link is Clicked
+*/
 a:active {
-    color: lightgray;
+    color: crimson;
 }
 
+/* Navigation Bar
+*/
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     border: 1px solid #e7e7e7;
-    background-color: lightgray;
+    background-color: crimson;
 }
+
+/* Where Navigation Bar is
+*/
 li {
     float: left;
 }
+
+/* Navigation Bar Setup
+*/
 li a {
     display: block;
     color: black;
@@ -85,11 +113,14 @@ li a {
     text-decoration: none;
 }
 
+/* Links in Navigation Bar
+*/
 li a:hover:not(.active) {
     background-color: #ddd;
 }
 
-
+/* Active Links in Navigation Bar
+*/
 li a.active {
     color: white;
     background-color: black;

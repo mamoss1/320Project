@@ -49,12 +49,13 @@
                 String fn = session.getAttribute("FIRSTNAME").toString();
             %>
         
+        <h1>Welcome <%=fn%>! Please see below for: </h1>
+        <h1>Customer Profiles, Movie Checkouts, Sales, and Revenue</h1><br> <br>
+
         
         <%-- CUSTOMER PROFILES --%>
-
-        <h1>Welcome <%=fn%>! Please see below for: </h1>
-         <h1>  Customer Profiles, Movie Checkouts, Sales, and Revenue</h1><br> <br>
-
+        
+        
         <h1>Customer Profiles</h1>
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
@@ -122,6 +123,8 @@
             </c:forEach>
         </table>
 
+            
+            
         <%-- SALES --%>
 
         <h1>Sales</h1>

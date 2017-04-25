@@ -3,7 +3,6 @@
     Created on : Apr 4, 2017, 3:53:25 PM
     Author     : memos
 --%>
-<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,14 +38,9 @@
             Manager: <input type="radio" name="isManager" value="True" checked/> <br> 
             Customer: <input type="radio" name="isManager" value="False" /> <br> <br>
 
-            <botDetect:captcha id="exampleCaptcha"/>
-            <div class="validationDiv">
-                <input id="captchaCode" type="text" name="captchaCode"
-                       value="${BasicExample.userAnswer}"/> <br> <br>
-                <input type="submit" name="submit" value="Submit" />
-                <span class="correct">${BasicExample.captchaCorrect}</span>
-                <span class="incorrect">${BasicExample.captchaIncorrect}</span>
-            </div>
+            <img src="css/ui-lightness/images/captcha.png" width="247" height="65" alt="captcha"/> <br>
+            <input type="text" name="userAnswer" value="" />
+            <input type="submit" value="Submit" />
         </form>
     </body>
 </html>

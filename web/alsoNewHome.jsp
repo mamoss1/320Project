@@ -1,10 +1,10 @@
 <%-- 
-    Document   : home
-    Created on : Apr 4, 2017, 3:53:25 PM
+    Document   : alsoNewHome
+    Created on : Apr 25, 2017, 4:03:13 PM
     Author     : memos
 --%>
 <%-- 
-   HOME PAGE WITH ALERT THAT USERNAME OR PASSWORD WAS WRONG
+   HOME PAGE WITH ALERT THAT CAPTCHA ANSWER WAS WRONG
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,7 +18,7 @@
     <body>
         
         <script language ="JavaScript" >
-            alert("Invalid Login \nIncorrect Username or Password \nPlease Try Again");
+            alert("Invalid Captcha Answer\nPlease Try Again");
         </script>
         
         <h1>User Login</h1>

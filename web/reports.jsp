@@ -24,11 +24,7 @@
             <li><a class="active" href="reports.jsp">Reports</a></li>
             <li><a href="home.jsp">Log Out</a></li>            
         </ul> <br>
-        
-        
-        
-        
-        
+
         
         <%-- BEST SELLERS --%>
 
@@ -57,12 +53,6 @@
         </table>
 
 
-
-            
-            
-            
-            
-            
             
         <%-- WORST SELLERS --%>
 
@@ -89,13 +79,6 @@
                 </tr>
             </c:forEach>
         </table>
-            
-            
-            
-            
-            
-            
-            
             
             
             
