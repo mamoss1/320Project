@@ -35,7 +35,7 @@ public class DescriptionController extends HttpServlet {
              request.setAttribute("film", film); 
    
             } else {
-                forward="listProduct.jsp";
+                forward="search.jsp";
             }
             RequestDispatcher view= request.getRequestDispatcher(forward);
             

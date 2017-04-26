@@ -15,10 +15,6 @@ import javax.swing.*;
 //https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.1/api/javax.servlet.http.HttpServlet.html
 public class ProductController extends HttpServlet
 {
-    
-//    SELECT DATEDIFF(CURDATE(), TRANSDATE)
-//    FROM TRANSACTIONS
-//    WHERE USERID = 3 AND FILMID = 96 AND ISRETURNED = 0;
 
     private static final long serialVersionUID = 1L;
     private static String CUSTOMER = "/customerHome.jsp";
@@ -31,6 +27,7 @@ public class ProductController extends HttpServlet
         dao = new ProductDAO();
     }
 
+    //LOGGING IN AS A RETURNING USER
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
@@ -89,6 +86,7 @@ public class ProductController extends HttpServlet
         view.forward(request, response);
     }
 
+    //REGISTERING AS A NEW USER
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
@@ -101,32 +99,58 @@ public class ProductController extends HttpServlet
         String userAnswer = request.getParameter("userAnswer");
 
         //if their captcha answer matches the picture
-        if (userAnswer.equals("JA3V8") || userAnswer.equals("JA3v8"))
+        if (userAnswer.equals("UBJ3NA"))
         {
             //if the textboxes aren't blank
             if (!firstName.equals("") && !lastName.equals("") && !email.equals("") && !password.equals(""))
             {
-                user.setFirstName(firstName);
-                user.setLastName(lastName);
-                user.setEmail(email);
-                user.setPassword(password);
-                user.setIsManager(isManager);
 
-                dao.addUser(user);
-
-                //if they're a manager
-                if (isManager == true)
+                //if the password is at least 8 characters long
+                if (password.length() >= 8)
                 {
-                    RequestDispatcher view = request.getRequestDispatcher(MANAGER);
-                    request.setAttribute("user", user);
-                    view.forward(request, response);
-                } //if they're a customer   
+                    Boolean verification = passCheck(password);
+
+                    //if password is made up of letters and numbers
+                    if (verification == true)
+                    {
+                        user.setFirstName(firstName);
+                        user.setLastName(lastName);
+                        user.setEmail(email);
+                        user.setPassword(password);
+                        user.setIsManager(isManager);
+
+                        dao.addUser(user);
+
+                        //if they're a manager
+                        if (isManager == true)
+                        {
+                            RequestDispatcher view = request.getRequestDispatcher(MANAGER);
+                            request.setAttribute("user", user);
+                            view.forward(request, response);
+                        } //if they're a customer   
+                        else
+                        {
+                            RequestDispatcher view = request.getRequestDispatcher(CUSTOMER);
+                            request.setAttribute("user", user);
+                            view.forward(request, response);
+                        }
+
+                    } //if password isn't made up of letters and numbers
+                    else
+                    {
+                        RequestDispatcher view = request.getRequestDispatcher("/home.jsp");
+                        request.setAttribute("user", user);
+                        view.forward(request, response);
+                    }
+
+                } //if the password isn't at least 8 characters
                 else
                 {
-                    RequestDispatcher view = request.getRequestDispatcher(CUSTOMER);
+                    RequestDispatcher view = request.getRequestDispatcher("/home.jsp");
                     request.setAttribute("user", user);
                     view.forward(request, response);
                 }
+
             } //if one of the text boxes was blank    
             else
             {
@@ -142,4 +166,17 @@ public class ProductController extends HttpServlet
             view.forward(request, response);
         }
     }
+
+    public static boolean passCheck(String password)
+    {
+        for (int i = 0; i < password.length(); i++)
+        {
+            if (!Character.isLetterOrDigit((password.charAt(i))))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

@@ -37,11 +37,11 @@
             Email : <input type="text" name="email"
                            value="<c:out value="${user.email}" />" /> <br> 
             Password: <input type="password" name="password"
-                             value= "<c:out value="${user.password}" />" /> <br> 
+                             value= "<c:out value="${user.password}" />" /> (Password must be at least 8 characters long, and must contain letters and numbers)<br> 
             Manager: <input type="radio" name="isManager" value="True" checked/> <br> 
             Customer: <input type="radio" name="isManager" value="False" /> <br> <br>
 
-            <img src="css/ui-lightness/images/captcha.png" width="175" height="45" alt="captcha"/> <br>
+            <img src="css/ui-lightness/images/newCaptcha.png" width="175" height="45" alt="captcha"/> <br>
             <input type="text" name="userAnswer" value="" />
             <input type="submit" value="Submit" />
         </form>

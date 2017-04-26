@@ -15,7 +15,6 @@
         <title>Search</title>
     </head>
        
-     
  <%--the code below allows the user to search for a film 
 by the category, actor's name or store. --%>
 <body>
@@ -34,11 +33,10 @@ by the category, actor's name or store. --%>
             <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
             
             <h1>Search</h1>
-        
-        
+         
       <form action="search.jsp" method="POST"> 
      
-            Please enter the Film category:
+            Please enter the Film Category:
             <input type="text" name="category">
             <br>
             Please enter the Films Actor's First Name:
