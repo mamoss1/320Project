@@ -24,6 +24,8 @@
         <h1>Your Transactions</h1>
         <% String email = session.getAttribute("email").toString();
             Integer user_id=(Integer)session.getAttribute("user_id");
+            String error = request.getAttribute("error").toString();
+            String error1 = request.getAttribute("error1").toString();
             %>
 
     <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -38,7 +40,8 @@
         WHERE USERID = <%=user_id%>
         
     </sql:query>
-  
+    ${error}
+    ${error1}
     <table border="1" width="100%">
         <tr>
             <th>User ID</th>

@@ -13,12 +13,14 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+import javax.swing.JOptionPane;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +30,7 @@ public class CheckoutController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String CHECKOUT = "/customerTransactions.jsp";
+    private static String REDO = "/checkout.jsp";
     //private static String LIST_USER = "/listUser.jsp";
     private CheckoutDAO dao;
 
@@ -46,18 +49,18 @@ public class CheckoutController extends HttpServlet {
         String userID = request.getParameter("userID");
         Integer user_id = Integer.parseInt(userID);
         trans.setUserID(Integer.parseInt(userID));
+        String errorMessage = "Thank you for your purchase";
+        String errorMessage1 = "";
 
 //        String filmID = request.getParameter("filmID");
 //        trans.setFilmID(Integer.parseInt(filmID));
 //
 //        trans.setTitle(request.getParameter("title"));
-
         float amount = (float) 2.99;
         trans.setAmount(amount);
 
         trans.setCreditCard(request.getParameter("creditCard"));
 
-        
         trans.setPin(request.getParameter("pin"));
 
         try {
@@ -80,15 +83,36 @@ public class CheckoutController extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        
-        try{
-            dao.addTransactions(user_id,trans);
-            dao.removeCart(user_id);
-        }
-        catch (Exception e){
+
+        try {
+            
+            if (trans.getTransDate().after(trans.getExpDate()) || (trans.getCreditCard().length() != 16)) {
+                if (trans.getTransDate().after(trans.getExpDate())){
+                    errorMessage = "Your credit card is expired. Please use a valid credit card.";
+                    request.setAttribute("error",errorMessage);
+                    request.setAttribute("error1", errorMessage1);
+                }
+                if (trans.getCreditCard().length() != 16){
+                     errorMessage1 = "Please enter a valid credit card number.";
+                     request.setAttribute("error1",errorMessage1);
+                     request.setAttribute("error",errorMessage);
+                
+                }
+                
+            }
+
+            else {
+                
+                request.setAttribute("error",errorMessage);
+                request.setAttribute("error1",errorMessage1);
+                dao.addTransactions(user_id, trans);
+                dao.removeCart(user_id);
+
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
 
 //        user.setEmail(request.getParameter("email"));
 //        String userid = request.getParameter("userid");
@@ -101,8 +125,8 @@ public class CheckoutController extends HttpServlet {
 //            user.setUserid(Integer.parseInt(userid));
 //            dao.updateUser(user);
 //        }
-        RequestDispatcher view = request.getRequestDispatcher(CHECKOUT);
 //        request.setAttribute("users", dao.getAllUsers());
+        RequestDispatcher view = request.getRequestDispatcher(CHECKOUT);
         view.forward(request, response);
     }
 
