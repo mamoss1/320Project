@@ -30,11 +30,12 @@
             <input type="submit" value="Submit" />
         </form>
 
-        <h1>User Register</h1>    
+           
         <%-- User Register --%>   
         <form method="POST" action="ProductController" name="frmUserRegister">
             <input type="hidden" readonly="readonly" name="order_num"
                    value="<c:out value="${user.user_id}" />" /> <br> 
+            <h1>User Register</h1> 
             First Name : <input type="text" name="firstName"
                                 value="<c:out value="${user.firstName}" />" /> <br> 
             Last Name: <input type="text" name="lastName"
