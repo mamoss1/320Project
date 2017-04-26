@@ -15,6 +15,10 @@ import javax.swing.*;
 //https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.1/api/javax.servlet.http.HttpServlet.html
 public class ProductController extends HttpServlet
 {
+    
+//    SELECT DATEDIFF(CURDATE(), TRANSDATE)
+//    FROM TRANSACTIONS
+//    WHERE USERID = 3 AND FILMID = 96 AND ISRETURNED = 0;
 
     private static final long serialVersionUID = 1L;
     private static String CUSTOMER = "/customerHome.jsp";

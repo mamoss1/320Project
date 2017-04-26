@@ -80,8 +80,6 @@
             </c:forEach>
         </table>
             
-            
-            
             <%-- NOT SOLD IN PAST YEAR --%>
 
         <h1>Movies Not Sold in the Past Year</h1>
