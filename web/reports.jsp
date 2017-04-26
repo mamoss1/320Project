@@ -91,7 +91,7 @@
         <sql:query dataSource="${snapshot}" var="result">
             SELECT FILMID, TITLE, TRANSDATE
             FROM TRANSACTIONS
-            WHERE TRANSDATE < '2016-12-30' 
+            WHERE TRANSDATE < DATE_SUB(CURDATE(), INTERVAL 1 YEAR);
         </sql:query>
 
         <table border="1" width="100%">
