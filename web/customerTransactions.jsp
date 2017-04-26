@@ -17,6 +17,10 @@
 
     </head>
     <body>
+        <ul>
+            <li><a href="search.jsp">Back</a></li>     
+        </ul> <br> <br> 
+        <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
         <h1>Your Transactions</h1>
         <% String email = session.getAttribute("email").toString();
             Integer user_id=(Integer)session.getAttribute("user_id");

@@ -34,7 +34,7 @@
             <li><a href="recomendations.jsp">Movie Recommendations</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br>
-
+<img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
         <h1>Checkout</h1>
         <script>
             $(function () {

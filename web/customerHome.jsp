@@ -27,9 +27,9 @@
             <li><a href="checkout.jsp">Checkout</a></li>
             <li><a href="recomendations.jsp">Movie Recommendations</a></li>
             <li><a href="home.jsp">Log Out</a></li>
-        </ul> <br> <br> <br>
+        </ul> <br> 
         
-        
+        <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
         
             <% String email = session.getAttribute("email").toString();
              Class.forName("com.mysql.jdbc.Driver");

@@ -31,6 +31,8 @@ by the category, actor's name or store. --%>
             <% String email = session.getAttribute("email").toString();
             %>
           
+            <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
+            
             <h1>Search</h1>
         
         
