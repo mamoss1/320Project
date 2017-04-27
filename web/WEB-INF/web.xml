@@ -68,4 +68,12 @@
         <servlet-name>BotDetect Captcha</servlet-name>
         <url-pattern>/botdetectcaptcha</url-pattern>
     </servlet-mapping>
+        <servlet>
+        <servlet-name>ReturnController</servlet-name>
+        <servlet-class>com.project.ReturnController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReturnController</servlet-name>
+        <url-pattern>/ReturnController</url-pattern>
+    </servlet-mapping>
 </web-app>

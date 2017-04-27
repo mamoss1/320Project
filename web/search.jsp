@@ -25,6 +25,7 @@ by the category, actor's name or store. --%>
             <li><a class="active" href="search.jsp">Search</a></li>     
             <li><a href="checkout.jsp">Checkout</a></li>
             <li><a href="recomendations.jsp">Movie Recommendations</a></li>
+            <li><a href="return.jsp">Return</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br>
             <% String email = session.getAttribute("email").toString();

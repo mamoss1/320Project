@@ -25,6 +25,7 @@
             <li><a class="active" href="home_wishlist.jsp">Wishlist</a></li>    
             <li><a href="search.jsp">Search</a></li>     
             <li><a href="checkout.jsp">Checkout</a></li>
+            <li><a href="return.jsp">Return</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> 
         <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>

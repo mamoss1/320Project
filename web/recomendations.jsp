@@ -23,6 +23,7 @@
             <li><a href="search.jsp">Search</a></li>     
             <li><a href="checkout.jsp">Checkout</a></li>
             <li><a class="active" href="recomendations.jsp">Movie Recommendations</a></li>
+            <li><a href="return.jsp">Return</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> 
         
