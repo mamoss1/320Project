@@ -68,7 +68,7 @@ public class CheckoutDAO {
         }
 
         PreparedStatement preparedStatement = connection
-                .prepareStatement("insert into transactions(USERID, FILMID, TITLE, TRANSDATE, AMOUNT, CREDITCARD, CCEXP, CCPIN) values (?, ?, ?, ?, ?, ?, ?, ?)");
+                .prepareStatement("insert into transactions(USERID, FILMID, TITLE, TRANSDATE, AMOUNT, CREDITCARD, CCEXP, CCPIN, ISRETURNED) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         for (int i = 0; i < transactions.size(); i++) {
             try {
@@ -81,6 +81,7 @@ public class CheckoutDAO {
                 preparedStatement.setString(6, transactions.get(i).getCreditCard());
                 preparedStatement.setDate(7, transactions.get(i).getExpDate());
                 preparedStatement.setString(8, transactions.get(i).getPin());
+                preparedStatement.setBoolean(9, false);
                 preparedStatement.executeUpdate();
 
             } catch (SQLException e) {

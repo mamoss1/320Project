@@ -110,7 +110,7 @@ public class CartDAO {
         try {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("select title from film where title=?");
-            preparedStatement.setString(2, title);
+            preparedStatement.setString(1, title);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
