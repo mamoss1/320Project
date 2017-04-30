@@ -27,8 +27,7 @@
     
       <ul>
             <li><a href="search.jsp">Back</a></li>     
-        </ul> <br> <br> 
-        <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
+        </ul> <br> <br> <br>
           <h1>Welcome to the Description Page!</h1>
     <table border=1>
         <thead>
@@ -58,7 +57,7 @@
             String title = request.getParameter("title");  
               
            
-           
+           //This is a really long query to get the infromation need for the description.
             
              String query= " select F.title,C.name, F.description, A.first_name, A.last_name, F.length, F.rating from store as S join inventory as I"
                      + " on S.store_id=I.store_id"

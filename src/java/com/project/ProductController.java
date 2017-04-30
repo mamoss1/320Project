@@ -13,23 +13,19 @@ import javax.servlet.http.HttpSession;
 import javax.swing.*;
 
 //https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.1/api/javax.servlet.http.HttpServlet.html
-public class ProductController extends HttpServlet
-{
+public class ProductController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String CUSTOMER = "/customerHome.jsp";
     private static String MANAGER = "/managerHome.jsp";
     private ProductDAO dao;
 
-    public ProductController()
-    {
+    public ProductController() {
         super();
         dao = new ProductDAO();
     }
 
-    //LOGGING IN AS A RETURNING USER
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String forward = "";
 
@@ -37,44 +33,33 @@ public class ProductController extends HttpServlet
 
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
-        if (!email.equals(""))
-        {
+        if (!email.equals("")) {
             session.setAttribute("email", email);
 
             //Find the email in the database (if it doesn't exist it will go to catch)
             //Get the password linked to email and check if it equals password entered (if not display invalid login)
             //If it matches, check whether they are employee or member. This will decide which forward to use
             User user = new User();
-            try
-            {
+            try {
                 user = dao.getUser(request.getParameter("email"));
                 String password = user.getPassword();
                 boolean isManager = user.getIsManager();
                 String enteredPassword = request.getParameter("password");
-
-                //if the password they entered matches the database's password
-                if (enteredPassword.equals(password))
-                {
-                    //if they're a manager
-                    if (isManager == true)
-                    {
+                if (enteredPassword.equals(password)) {
+                    if (isManager == true) {
                         forward = MANAGER;
-                    } //if they're a customer
-                    else
-                    {
+
+                    } else {
                         forward = CUSTOMER;
                     }
-                } //if the password they entered didn't match the database's password
-                else
-                {
+                } else {
                     forward = "/newHome.jsp";
                 }
-            } //catch for the try - forwards them to the home page w/ alert that their username or password was wrong
-            catch (Exception e)
-            {
-                forward = "/newHome.jsp";
+            } catch (Exception e) {
+                forward = "/home.jsp";
             }
-        } //if the session's email is blank
+
+        }
         else
         {
             forward = "/home.jsp";
@@ -86,9 +71,7 @@ public class ProductController extends HttpServlet
         view.forward(request, response);
     }
 
-    //REGISTERING AS A NEW USER
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         User user = new User();
         String firstName = request.getParameter("firstName");
@@ -96,87 +79,30 @@ public class ProductController extends HttpServlet
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean isManager = Boolean.parseBoolean(request.getParameter("isManager"));
-        String userAnswer = request.getParameter("userAnswer");
+        if (!firstName.equals("") && !lastName.equals("") && !email.equals("") && !password.equals("")) {
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setIsManager(isManager);
 
-        //if their captcha answer matches the picture
-        if (userAnswer.equals("UBJ3NA"))
-        {
-            //if the textboxes aren't blank
-            if (!firstName.equals("") && !lastName.equals("") && !email.equals("") && !password.equals(""))
-            {
+            dao.addUser(user);
 
-                //if the password is at least 8 characters long
-                if (password.length() >= 8)
-                {
-                    Boolean verification = passCheck(password);
-
-                    //if password is made up of letters and numbers
-                    if (verification == true)
-                    {
-                        user.setFirstName(firstName);
-                        user.setLastName(lastName);
-                        user.setEmail(email);
-                        user.setPassword(password);
-                        user.setIsManager(isManager);
-
-                        dao.addUser(user);
-
-                        //if they're a manager
-                        if (isManager == true)
-                        {
-                            RequestDispatcher view = request.getRequestDispatcher(MANAGER);
-                            request.setAttribute("user", user);
-                            view.forward(request, response);
-                        } //if they're a customer   
-                        else
-                        {
-                            RequestDispatcher view = request.getRequestDispatcher(CUSTOMER);
-                            request.setAttribute("user", user);
-                            view.forward(request, response);
-                        }
-
-                    } //if password isn't made up of letters and numbers
-                    else
-                    {
-                        RequestDispatcher view = request.getRequestDispatcher("/home.jsp");
-                        request.setAttribute("user", user);
-                        view.forward(request, response);
-                    }
-
-                } //if the password isn't at least 8 characters
-                else
-                {
-                    RequestDispatcher view = request.getRequestDispatcher("/home.jsp");
-                    request.setAttribute("user", user);
-                    view.forward(request, response);
-                }
-
-            } //if one of the text boxes was blank    
-            else
-            {
-                RequestDispatcher view = request.getRequestDispatcher("/home.jsp");
+            if (isManager == true) {
+                RequestDispatcher view = request.getRequestDispatcher(MANAGER);
+                request.setAttribute("user", user);
+                view.forward(request, response);
+            } else {
+                RequestDispatcher view = request.getRequestDispatcher(CUSTOMER);
                 request.setAttribute("user", user);
                 view.forward(request, response);
             }
-        } //if they failed the captcha   
-        else
-        {
-            RequestDispatcher view = request.getRequestDispatcher("/alsoNewHome.jsp");
+        } else {
+            RequestDispatcher view = request.getRequestDispatcher("/home.jsp");
             request.setAttribute("user", user);
             view.forward(request, response);
         }
-    }
 
-    public static boolean passCheck(String password)
-    {
-        for (int i = 0; i < password.length(); i++)
-        {
-            if (!Character.isLetterOrDigit((password.charAt(i))))
-            {
-                return false;
-            }
-        }
-        return true;
     }
-
 }
+ 

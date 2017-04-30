@@ -27,17 +27,17 @@ by the category, actor's name or store. --%>
             <li><a href="recomendations.jsp">Movie Recommendations</a></li>
             <li><a href="return.jsp">Return</a></li>
             <li><a href="home.jsp">Log Out</a></li>
-        </ul> <br>
-            <% String email = session.getAttribute("email").toString();
+         </ul> <br>
+            <% //this code get the user emails.
+                String email = session.getAttribute("email").toString();
             %>
           
-            <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
-            
             <h1>Search</h1>
-         
+        
+        <%-- This code allows user to search for a film.  --%>
       <form action="search.jsp" method="POST"> 
      
-            Please enter the Film Category:
+            Please enter the Film category:
             <input type="text" name="category">
             <br>
             Please enter the Films Actor's First Name:
@@ -61,7 +61,7 @@ by the category, actor's name or store. --%>
             </tr>
         </thead>
         <tbody>
-            <%
+            <%// this code connect to the MYSQL
            Class.forName("com.mysql.jdbc.Driver");
             Connection connection= null;
             connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
@@ -76,7 +76,7 @@ by the category, actor's name or store. --%>
                   String store= request.getParameter("store");
            
        
-            
+            //This long sql query gets all the infromation that is need for the search
              String query= " select F.title from store as S join inventory as I"
                      + " on S.store_id=I.store_id"
                       + " join film_category as FC"
@@ -103,9 +103,11 @@ by the category, actor's name or store. --%>
                  String title= rs.getString("title");  
                  
                  %>
-             
+             <%-- The code below get the infromation needed for the description page --%>
           <td><a href="DescriptionController?action=d&title=<c:out value="<%=title%>"/>"><%=title%></a></td>
+          <%-- The code below get the infromation needed for the cart page --%>
           <td><a href="CartController?action=d&title=<c:out value="<%=title%>"/>">Cart</a></td>
+          <%--The code below get the infromation needed for the wishlisit page --%>
           <td><a href="WishListController?action=d&title=<c:out value="<%=title%>"/>">Wish List</a></td>     
              
 
