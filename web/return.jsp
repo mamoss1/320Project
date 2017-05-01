@@ -26,7 +26,6 @@
     </head>
          
 <body>
-    
             <ul>
             <li><a href="customerHome.jsp">Home</a></li>
             <li><a href="home_cart.jsp">Cart</a></li>
@@ -37,13 +36,12 @@
             <li><a class="active" href="return.jsp">Return</a></li>
             <li><a href="home.jsp">Log Out</a></li>
         </ul> <br> 
-      
+      <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
             <%
-              //Integer user_id=(Integer)session.getAttribute("user_id");
-              Integer userid=1;
+              Integer userid=(Integer)session.getAttribute("user_id");
+              //Integer userid=1;
             %>
         
-            
             <h1>Return Page</h1>
 
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"

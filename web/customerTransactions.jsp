@@ -14,8 +14,8 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <title>Customer Transactions</title>
-
     </head>
+    
     <body>
         <ul>
             <li><a href="search.jsp">Back</a></li>     
@@ -38,10 +38,11 @@
         SELECT USERID, FILMID, TITLE, TRANSDATE, AMOUNT 
         from TRANSACTIONS
         WHERE USERID = <%=user_id%>
-        
     </sql:query>
-    ${error}
+        
+        ${error} <br>
     ${error1}
+    <br>
     <table border="1" width="100%">
         <tr>
             <th>User ID</th>

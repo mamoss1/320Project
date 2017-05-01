@@ -38,21 +38,25 @@
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
         <sql:query dataSource="${snapshot}" var="result">
-            SELECT SUM(AMOUNT) AS REVENUE, FILMID
-            FROM TRANSACTIONS
-            GROUP BY FILMID
-            ORDER BY SUM(AMOUNT) DESC
+            SELECT SUM(T.AMOUNT) AS REVENUE, T.FILMID, F.TITLE
+            FROM TRANSACTIONS AS T
+            JOIN FILM AS F
+            ON T.FILMID = F.FILM_ID
+            GROUP BY T.FILMID
+            ORDER BY SUM(T.AMOUNT) DESC
         </sql:query>
 
         <table border="1" width="100%">
             <tr>
                 <th>Revenue</th>
                 <th>Film ID</th>
+                <th>Title</th>
             </tr>
             <c:forEach var="row" items="${result.rows}">
                 <tr>
                     <td><c:out value="${row.REVENUE}"/></td>
                     <td><c:out value="${row.FILMID}"/></td>
+                    <td><c:out value="${row.TITLE}"/></td>
                 </tr>
             </c:forEach>
         </table>

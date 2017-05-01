@@ -126,7 +126,9 @@ li a.active {
     background-color: black;
 }
 
-
+.ui-datepicker-header, ui-datepicker-prev, ui-datepicker-next, ui-datepicker td span, ui-datepicker td a {
+    background: gray;
+}
 
 
 
