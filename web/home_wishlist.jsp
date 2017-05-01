@@ -28,9 +28,9 @@
             <li><a href="recomendations.jsp">Movie Recommendations</a></li>
             <li><a href="return.jsp">Return</a></li>
             <li><a href="home.jsp">Log Out</a></li>
-        </ul> <br>
-        <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
-            <% String email = session.getAttribute("email").toString();
+       </ul> <br>
+            <%  //this code gets the user's email and the user id so that it can be used in the sql code.
+                String email = session.getAttribute("email").toString();
             Integer user_id=(Integer)session.getAttribute("user_id");
             %>
             <h1>Wishlist</h1>
@@ -40,12 +40,12 @@
                 <th> User ID </th>
                 <th> Film ID </th>
                 <th> Film Title </th>
-                <th colspan=1>Action</th> 
+                <th colspan=2>Action</th> 
             
             </TR>
         </thead>
         <tbody>
-            <%
+            <% // THe code below is the SQL connection 
            Class.forName("com.mysql.jdbc.Driver");
             Connection connection= null;
             connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root","nbuser");
@@ -54,7 +54,7 @@
             Statement statement=connection.createStatement();
             String titles = request.getParameter("title");                
          
-                 
+               // the query select the needed infromation for the tables  
            String query="select USERID,FILMID, TITLE  from wishlist where USERID='"+ user_id + "'";
  
            ResultSet rs=null;
@@ -63,15 +63,18 @@
              %>
              <tr>
                  <%
+                 
                   String title= rs.getString("title");                   
                  %>
         
             <tr>
-               <TD> <%= rs.getString(1) %> </TD>
+               <TD> <%=rs.getString(1)%> </TD>
                <TD> <%= rs.getString(2) %> </TD>
                <TD> <%=title%> </TD>
+               <%-- the code below allow the user it add the film to their cart--%>
                <td><a href="CartController?action=d&title=<c:out value="<%=title%>"/>">Add to Cart</a></td>
-            </tr>
+               <%-- the code below allow the user to remove the film from thier wishlist --%>
+               <td><a href="WishListController?action=delete&title=<c:out value="<%=title%>"/>"> Remove</a></td>
              <%      
                 }
 

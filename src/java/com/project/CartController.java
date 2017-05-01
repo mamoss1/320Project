@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CartController extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static String Home_Cart="/home_cart.jsp";
     private static String Cart = "/cart.jsp";
     private static String SEARCH = "/search.jsp";
     private CartDAO dao;
@@ -29,15 +30,17 @@ public class CartController extends HttpServlet {
         String forward="";
      
         String action = request.getParameter("action");
+       //This action add the infromation to the cart.
         if(action.equalsIgnoreCase("d")){
                 forward= Cart;
             String title = request.getParameter("title");
             Film film = dao.getFilmByTitle(title);
              request.setAttribute("film", film); 
+             //This action delete the infromation from the cart.
         } else if (action.equalsIgnoreCase("delete")){
              String title = request.getParameter("title");            
             dao.deleteCart(title);
-           forward =Cart; 
+           forward =Home_Cart; 
             request.setAttribute("wishlists", dao.getAllCart());       
             } else {
                 forward="search.jsp";

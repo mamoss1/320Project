@@ -36,7 +36,7 @@ public class WishListController extends HttpServlet {
              request.setAttribute("film", film); 
         } else if (action.equalsIgnoreCase("delete")){
              String title = request.getParameter("title");            
-            dao.deleteWishlist(title);
+            dao.deleteWishList(title);
            forward =WISH; 
             request.setAttribute("wishlists", dao.getAllWishlist());       
             } else {

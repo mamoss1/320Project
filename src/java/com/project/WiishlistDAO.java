@@ -74,11 +74,10 @@ public class WiishlistDAO {
             e.printStackTrace();
         }
     }
-   public void deleteWishlist (String title){
+    public void deleteWishList (String title){
       try{
           PreparedStatement preparedStatement = connection
-                  .prepareStatement("delete from wishlist inner join wishlist on users.USERID=wishlist.USERID"
-                          + " where title=?");
+                  .prepareStatement("delete from wishlist where title=?");
             preparedStatement.setString(1,title);
             preparedStatement.executeUpdate();
       

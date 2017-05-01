@@ -27,10 +27,11 @@
             <li><a href="checkout.jsp">Checkout</a></li>
             <li><a href="return.jsp">Return</a></li>
             <li><a href="home.jsp">Log Out</a></li>
-        </ul> <br> 
-        <img src="css/ui-lightness/images/logo.png" width="247" height="65" alt="captcha"/> <br>
-            <% String email = session.getAttribute("email").toString();
-           Integer user_id=(Integer)session.getAttribute("user_id");
+       </ul> <br> 
+            <% 
+                 //this code gets the user's email and the user id so that it can be used in the sql code.
+                String email = session.getAttribute("email").toString();
+                Integer userid=(Integer)session.getAttribute("user_id");
             %>
           <h1>Wishlist</h1>
     <table border=1>
@@ -39,11 +40,11 @@
                 <th> User ID </th>
                 <th> Film ID </th>
                 <th> Film Title </th>
-                 <th colspan=1>Action</th> 
+                 <th colspan=2>Action</th> 
             </TR>
         </thead>
         <tbody>
-            <%
+            <%//this code connection to the MySQL 
            
            Class.forName("com.mysql.jdbc.Driver");
             Connection connection= null;
@@ -52,7 +53,7 @@
             stmt=connection.createStatement();
             Statement statement=connection.createStatement();
             String titles = request.getParameter("title"); 
-            
+            // this query slect the film id using the title of the films 
             String query="select film_id from film where title='"+ titles +"'";
             ResultSet rss=null;
            rss=stmt.executeQuery(query);
@@ -66,24 +67,31 @@
            
             <%
                    Integer film_id=(Integer)session.getAttribute("film_id");
-           String command="insert into wishlist (USERID,FILMID,TITLE) values('" + user_id + "','" + film_id + "','" + titles + "')";
-                 statement.executeUpdate(command);          
-           String query2="select USERID,FILMID, TITLE  from wishlist where USERID='"+ user_id + "'";
+             // The command insert the infromation into the wishlist.
+           String command="insert into wishlist (USERID,FILMID,TITLE) values('" + userid + "','" + film_id + "','" + titles + "')";
+                 statement.executeUpdate(command);       
+                 //This query sleect the infromation from the wishlist.
+           String query2="select USERID,FILMID, TITLE  from wishlist where USERID='"+ userid + "'";
            ResultSet rs=null;
            rs=stmt.executeQuery(query2);
            while(rs.next()){                     
              %>
              <tr>
                  <%
-                  String title= rs.getString("title");      
+                  
+                  String title= rs.getString("TITLE"); 
+                 
                  %>
         
             <tr>
-               <TD> <%= rs.getString(1) %> </TD>
-                <TD> <%= rs.getString(2) %> </TD>
+               <TD> <%=rs.getString(1)%> </TD>
+                <TD> <%=rs.getString(2)%> </TD>
                 <TD> <%=title%> </TD>
-                   <td><a href="CartController?action=d&title=<c:out value="<%=title%>"/>"> Add to Cart</a></td>
-            
+                    <%-- the code below allow the user it add the film to their cart--%>
+                <td><a href="CartController?action=d&title=<c:out value="<%=title%>"/>"> Add to Cart</a></td>
+                 <%-- the code below allow the user to remove the film from thier wishlist --%>
+                <td><a href="WishListController?action=delete&title=<c:out value="<%=title%>"/>">Remove</a>
+               <%-- <td><a href="WishListController?action=delete&title=<c:out value="<%=rs.getString(1)%>"/><c:out value="<%=title%>"/>"> Remove from Wishlist</a></td> --%>
             </tr>
              <%      
                 }
