@@ -66,8 +66,25 @@
            }
            %>
            
-            <%
-                // The user id is used to count the number of film that the user has. if the count is over five then the film are moved to the wishlist. 
+            <%      
+                  String query5 ="select count(*) from transactions where USERID='"+ user_id + "'";
+                 ResultSet rs5=null;
+           rs5=stmt.executeQuery(query5);
+           while(rs5.next()){ 
+            
+                       Integer numbers =rs5.getInt(1);
+                
+                    
+                    if (numbers > 4){
+                         // insert the film into cart if the count is under 5 films.
+                       Integer film_id=(Integer)session.getAttribute("film_id");
+           String command="insert into wishlist (USERID,FILMID,TITLE) values('" + user_id + "','" + film_id + "','" + titles + "')";
+                 statement.executeUpdate(command); 
+                                 }
+           }
+
+                     
+                 // The user id is used to count the number of film that the user has. if the count is over five then the film are moved to the wishlist. 
                 String query1 ="select count(*) from cart where USERID='"+ user_id + "'";
                  ResultSet rs1=null;
            rs1=stmt.executeQuery(query1);
@@ -75,22 +92,52 @@
             
                        Integer num =rs1.getInt(1);
                 
-                    
-                    if (num > 4){
+              
+                       if (num > 4){
               //insert the film into the wishlist if the count is over 5 films.     
                    Integer film_id=(Integer)session.getAttribute("film_id");
            String command="insert into wishlist (USERID,FILMID,TITLE) values('" + user_id + "','" + film_id + "','" + titles + "')";
                  statement.executeUpdate(command);     
+                    
                     }
+           
                     else {
                     // insert the film into cart if the count is under 5 films.
                      Integer film_id=(Integer)session.getAttribute("film_id");
            String command="insert into cart (USERID,FILMID,TITLE) values('" + user_id + "','" + film_id + "','" + titles + "')";
                  statement.executeUpdate(command);
+                                        }
+                           }
                     
+                    
+           
+           
+                    
+           
+                   
+           
+           
+           
+           
+           %>
+            <%// The user id is used to count the number of film that the user has. if the count is over five then the film are moved to the wishlist. 
+             /*   String query5 ="select count(*) from transactions where USERID='"+ user_id + "'";
+                 ResultSet rs5=null;
+           rs5=stmt.executeQuery(query5);
+           while(rs5.next()){ 
+            
+                       Integer num =rs5.getInt(1);
+                
+                    
+                    if (num < 0){
+              //insert the film into the wishlist if the count is over 5 films in the tran.     
+                   Integer film_id=(Integer)session.getAttribute("film_id");
+           String command="insert into wishlist (USERID,FILMID,TITLE) values('" + user_id + "','" + film_id + "','" + titles + "')";
+                 statement.executeUpdate(command);     
                     }
-                        
-           }
+           } */
+           %>
+           <%
            // the code below select the information for the table.
            String query2="select USERID,FILMID, TITLE  from cart where USERID='"+ user_id + "'";
            ResultSet rs=null;
@@ -111,7 +158,7 @@
             </tr>
              <%      
                 }
-               
+            
              
 
             %>
