@@ -31,7 +31,7 @@
                 String email = session.getAttribute("email").toString();
               Integer user_id=(Integer)session.getAttribute("user_id");
             %>
-              <h1>Cart Page</h1>
+              <h1>Cart</h1>
          Your cart is allowed up to 5 DVDs. If you try to add more than 5 DVDs to your
          cart, they will be added to your wishlist.
     <table border=1>
