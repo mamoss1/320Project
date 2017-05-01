@@ -41,7 +41,6 @@
                 <th> Film ID </th>
                 <th> Film Title </th>
                 <th colspan=1>Action</th> 
-
             </TR>
         </thead>
         <tbody>
@@ -150,9 +149,9 @@
                  %>
         
             <tr>
-               <TD> <%= rs.getString(1) %> </TD>
-                <TD> <%= rs.getString(2) %> </TD>
-                <TD> <%=title%> </TD>
+               <td> <%= rs.getString(1) %> </td>
+                <td> <%= rs.getString(2) %> </td>
+                <td> <%=title%> </td>
                 <%-- The code below allows the user to delete the films that they dont want  --%>
                <td><a href="CartController?action=delete&title=<c:out value="<%=title%>"/>"> Remove</a></td>
             </tr>
